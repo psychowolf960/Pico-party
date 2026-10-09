@@ -1,0 +1,5 @@
+Police PICO-8 par Lexaloffle Games — CC-0.
+Source : https://www.lexaloffle.com/gfx/pico-8_font_022.png
+(cf. FAQ : https://www.lexaloffle.com/pico-8.php?page=faq)
+pico8.png / pico8.fnt sont générés depuis pico8_source_sheet.png (réduction 4x, format BMFont).
+Codes 32-126 = ASCII. Codes P8SCII 128-255 (boutons, symboles, kana) = U+E080..U+E0FF.

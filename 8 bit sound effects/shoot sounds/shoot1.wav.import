@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dqxwg74xsqiv"
+path="res://.godot/imported/shoot1.wav-9771a6ec66f46d30a92e526f9b6afe6f.sample"
+
+[deps]
+
+source_file="res://8 bit sound effects/shoot sounds/shoot1.wav"
+dest_files=["res://.godot/imported/shoot1.wav-9771a6ec66f46d30a92e526f9b6afe6f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

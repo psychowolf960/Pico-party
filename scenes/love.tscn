@@ -1,0 +1,43 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://tcyy2nqvlmyu" path="res://scenes/love_collectible.gd" id="1_love"]
+[ext_resource type="Texture2D" uid="uid://coj0tf3sepi0k" path="res://art/love.png" id="2_love"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a"]
+atlas = ExtResource("2_love")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b"]
+atlas = ExtResource("2_love")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_love"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_love"]
+size = Vector2(8, 8)
+
+[node name="Love" type="Area2D" groups=["love"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_love")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_love")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_love")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

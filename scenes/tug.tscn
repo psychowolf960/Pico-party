@@ -1,0 +1,75 @@
+[gd_scene format=4 uid="uid://dviyamb60dyji"]
+
+[ext_resource type="Script" uid="uid://pgkikkgy6u0x" path="res://scripts/tug.gd" id="1_tug"]
+[ext_resource type="PackedScene" uid="uid://dc1jcn465sc0t" path="res://scenes/player.tscn" id="2_player"]
+[ext_resource type="TileSet" uid="uid://dyxe78ivp2i6y" path="res://art/terrain.tres" id="3_o7iot"]
+
+[node name="Tug" type="Node2D" unique_id=1438446573]
+script = ExtResource("1_tug")
+
+[node name="Rope" type="ColorRect" parent="." unique_id=1598787795]
+unique_name_in_owner = true
+offset_left = 14.0
+offset_top = 99.0
+offset_right = 114.0
+offset_bottom = 100.0
+color = Color(0.890196, 0.627451, 0.439216, 1)
+
+[node name="Marker" type="ColorRect" parent="Rope" unique_id=75926800]
+layout_mode = 0
+offset_left = 50.0
+offset_top = -2.0
+offset_right = 51.0
+offset_bottom = 3.0
+color = Color(0.909804, 0.278431, 0.360784, 1)
+
+[node name="LeftLimit" type="ColorRect" parent="." unique_id=2094806692]
+offset_left = 44.0
+offset_top = 98.0
+offset_right = 45.0
+offset_bottom = 101.0
+color = Color(0.984314, 0.94902, 0.211765, 1)
+
+[node name="RightLimit" type="ColorRect" parent="." unique_id=829116982]
+offset_left = 84.0
+offset_top = 98.0
+offset_right = 85.0
+offset_bottom = 101.0
+color = Color(0.984314, 0.94902, 0.211765, 1)
+
+[node name="Player" parent="." unique_id=1236587469 instance=ExtResource("2_player")]
+unique_name_in_owner = true
+position = Vector2(40, 100)
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1863351721]
+unique_name_in_owner = true
+anchor_mode = 0
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=786746991]
+
+[node name="Help" type="Label" parent="HUD" unique_id=727895636]
+offset_top = 20.0
+offset_right = 128.0
+offset_bottom = 26.0
+text = "o: tirer !"
+horizontal_alignment = 1
+
+[node name="Banner" type="ColorRect" parent="HUD" unique_id=1920001105]
+visible = false
+offset_top = 48.0
+offset_right = 128.0
+offset_bottom = 64.0
+color = Color(0.0588235, 0.0431373, 0.14902, 1)
+
+[node name="Bravo" type="Label" parent="HUD/Banner" unique_id=1250829408]
+layout_mode = 0
+offset_top = 5.0
+offset_right = 128.0
+offset_bottom = 11.0
+theme_override_colors/font_color = Color(0.984314, 0.94902, 0.211765, 1)
+horizontal_alignment = 1
+
+[node name="Level" type="TileMapLayer" parent="." unique_id=1313965366]
+unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAAAAA0AAAABAAAAAAABAA0AAAABAAAAAAACAA0AAAABAAAAAAADAA0AAAABAAAAAAAEAA0AAAABAAAAAAAFAA0AAAABAAAAAAAGAA0AAAABAAAAAAAHAA0AAAABAAAAAAAIAA0AAAABAAAAAAAJAA0AAAABAAAAAAAKAA0AAAABAAAAAAALAA0AAAABAAAAAAAMAA0AAAABAAAAAAANAA0AAAABAAAAAAAOAA0AAAABAAAAAAAPAA0AAAABAAAAAAAPAA4AAAABAAEAAAAPAA8AAAABAAEAAAAOAA8AAAABAAEAAAANAA8AAAABAAEAAAANAA4AAAABAAEAAAAMAA4AAAABAAEAAAALAA4AAAABAAEAAAAKAA4AAAABAAEAAAAJAA4AAAABAAEAAAAHAA4AAAABAAEAAAAIAA4AAAABAAEAAAAGAA4AAAABAAEAAAAFAA4AAAABAAEAAAAEAA4AAAABAAEAAAADAA4AAAABAAEAAAACAA4AAAABAAEAAAABAA4AAAABAAEAAAABAA8AAAABAAEAAAACAA8AAAABAAEAAAADAA8AAAABAAEAAAAEAA8AAAABAAEAAAAFAA8AAAABAAEAAAAGAA8AAAABAAEAAAAHAA8AAAABAAEAAAAIAA8AAAABAAEAAAAJAA8AAAABAAEAAAAKAA8AAAABAAEAAAALAA8AAAABAAEAAAAMAA8AAAABAAEAAAAOAA4AAAABAAEAAAAAAA4AAAABAAEAAAAAAA8AAAABAAEAAAAAABAAAAABAAIAAAABABAAAAABAAIAAAADABAAAAABAAIAAAACABAAAAABAAIAAAAFABAAAAABAAIAAAAEABAAAAABAAIAAAAGABAAAAABAAIAAAAHABAAAAABAAIAAAAIABAAAAABAAIAAAAJABAAAAABAAIAAAAKABAAAAABAAIAAAALABAAAAABAAIAAAAMABAAAAABAAIAAAANABAAAAABAAIAAAAOABAAAAABAAIAAAAPABAAAAABAAIAAAD//w0AAAABAAAAAAD//w4AAAABAAEAAAD+/w8AAAABAAEAAAD+/xAAAAABAAIAAAD//xAAAAABAAIAAAD//w8AAAABAAEAAAD+/w4AAAABAAEAAAD+/w0AAAABAAAAAAD9/w0AAAAAAAAAAAD9/w4AAAAAAAEAAAD9/w8AAAAAAAEAAAD9/xAAAAAAAAIAAAAQABAAAAABAAIAAAAQAA8AAAABAAEAAAAQAA4AAAABAAEAAAAQAA0AAAABAAAAAAARAA4AAAABAAEAAAARAA8AAAABAAEAAAARAA0AAAABAAAAAAARABAAAAABAAIAAAASABAAAAABAAIAAAASAA8AAAABAAEAAAASAA4AAAABAAEAAAASAA0AAAABAAAAAAATAA0AAAACAAAAAAATAA4AAAACAAEAAAATAA8AAAACAAEAAAATABAAAAACAAIAAAA=")
+tile_set = ExtResource("3_o7iot")

@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://dc1jcn465sc0t"]
+
+[ext_resource type="Script" uid="uid://cbv45ie5f62rb" path="res://scripts/player.gd" id="5_p57ef"]
+[ext_resource type="SpriteFrames" uid="uid://bauby2vxhwtjp" path="res://art/player_frames.tres" id="6_u5sy4"]
+[ext_resource type="Material" path="res://shaders/death_particles.tres" id="7_part"]
+[ext_resource type="Texture2D" uid="uid://b011yh6bcb6rg" path="res://art/star.png" id="8_star"]
+[ext_resource type="Texture2D" uid="uid://cd88grnklbj7n" path="res://art/potato_bomb_sheet.png" id="9_bomb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0"]
+atlas = ExtResource("8_star")
+region = Rect2(0, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1"]
+atlas = ExtResource("8_star")
+region = Rect2(7, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2"]
+atlas = ExtResource("8_star")
+region = Rect2(14, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3"]
+atlas = ExtResource("8_star")
+region = Rect2(21, 0, 7, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_stars"]
+animations = [{
+"frames": [{
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_s0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
+size = Vector2(6, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
+size = Vector2(4, 11)
+
+[node name="Player" type="CharacterBody2D" unique_id=1761659817]
+collision_layer = 3
+collision_mask = 11
+script = ExtResource("5_p57ef")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=73497075]
+position = Vector2(0, -4)
+sprite_frames = ExtResource("6_u5sy4")
+animation = &"wall"
+autoplay = "idle"
+
+[node name="Stars" type="AnimatedSprite2D" parent="." unique_id=278383348]
+visible = false
+position = Vector2(0, -14)
+sprite_frames = SubResource("SpriteFrames_stars")
+autoplay = "default"
+frame_progress = 0.14514087
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=436681836]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_dqkch")
+one_way_collision = true
+
+[node name="Explosion" type="GPUParticles2D" parent="." unique_id=435765786]
+position = Vector2(0, -4)
+emitting = false
+amount = 256
+lifetime = 0.9
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+process_material = ExtResource("7_part")
+
+[node name="DangerZone" type="Area2D" parent="." unique_id=849515381]
+collision_layer = 4
+collision_mask = 4
+
+[node name="Hitbox" type="CollisionShape2D" parent="DangerZone" unique_id=1416547456]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_hurt")
+
+[node name="Potatobomb" type="Sprite2D" parent="." unique_id=1994852436]
+visible = false
+position = Vector2(0, -17)
+texture = ExtResource("9_bomb")
+hframes = 4
+
+[connection signal="body_entered" from="DangerZone" to="." method="_on_danger_zone_body_entered"]

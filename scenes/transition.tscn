@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/transition.gd" id="1_script"]
+[ext_resource type="Shader" path="res://shaders/transition.gdshader" id="2_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wave"]
+shader = ExtResource("2_shader")
+shader_parameter/progress = 2.5
+
+[node name="Transition" type="CanvasLayer"]
+layer = 100
+script = ExtResource("1_script")
+
+[node name="Rect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_wave")
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

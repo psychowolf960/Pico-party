@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://7r4r8v0foyg1"
+path="res://.godot/imported/bump6.wav-b06a202bdbca055c66d3cdc7ef2d6109.sample"
+
+[deps]
+
+source_file="res://8 bit sound effects/bump sounds/bump6.wav"
+dest_files=["res://.godot/imported/bump6.wav-b06a202bdbca055c66d3cdc7ef2d6109.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

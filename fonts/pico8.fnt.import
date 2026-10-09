@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://ic45by3lipcq"
+path="res://.godot/imported/pico8.fnt-535977ff25034fd1e8d986ea89365e65.fontdata"
+
+[deps]
+
+source_file="res://fonts/pico8.fnt"
+dest_files=["res://.godot/imported/pico8.fnt-535977ff25034fd1e8d986ea89365e65.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true
+scaling_mode=2

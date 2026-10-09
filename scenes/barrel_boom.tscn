@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://b2kwtn77nbdu"]
+
+[ext_resource type="Texture2D" uid="uid://bvqp8y08p4say" path="res://art/barrel_boom.png" id="1_boom"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0"]
+atlas = ExtResource("1_boom")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1"]
+atlas = ExtResource("1_boom")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2"]
+atlas = ExtResource("1_boom")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3"]
+atlas = ExtResource("1_boom")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4"]
+atlas = ExtResource("1_boom")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5"]
+atlas = ExtResource("1_boom")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_boom"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_2")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_3")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_4")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_5")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="BarrelBoom" type="AnimatedSprite2D" unique_id=892713697]
+sprite_frames = SubResource("SpriteFrames_boom")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0
+
+[connection signal="animation_finished" from="." to="." method="queue_free"]

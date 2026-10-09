@@ -1,0 +1,101 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/crumble.gd" id="1_crumble"]
+[ext_resource type="Texture2D" path="res://art/crumble.png" id="2_crumble"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0"]
+atlas = ExtResource("2_crumble")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1"]
+atlas = ExtResource("2_crumble")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2"]
+atlas = ExtResource("2_crumble")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3"]
+atlas = ExtResource("2_crumble")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4"]
+atlas = ExtResource("2_crumble")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5"]
+atlas = ExtResource("2_crumble")
+region = Rect2(40, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_crumble"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5")
+}],
+"loop": false,
+"name": &"crack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_touch"]
+size = Vector2(10, 10)
+
+[node name="Crumble" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_crumble")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_crumble")
+animation = &"idle"
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_body")
+
+[node name="Touch" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 18
+monitorable = false
+
+[node name="Shape" type="CollisionShape2D" parent="Touch"]
+shape = SubResource("RectangleShape2D_touch")
+
+[node name="Debris" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(4, 4)
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 500)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+color = Color(0.541176, 0.294118, 0.164706, 1)
+
+[connection signal="animation_finished" from="Sprite" to="." method="_on_animation_finished"]

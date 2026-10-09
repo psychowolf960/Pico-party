@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://xfqy2eoj2cqj"
+path="res://.godot/imported/shoot5.wav-05bdb39314ab46f91abe6b8d6155b27b.sample"
+
+[deps]
+
+source_file="res://8 bit sound effects/shoot sounds/shoot5.wav"
+dest_files=["res://.godot/imported/shoot5.wav-05bdb39314ab46f91abe6b8d6155b27b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

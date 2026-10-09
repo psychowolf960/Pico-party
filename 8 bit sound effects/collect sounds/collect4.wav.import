@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c22dnfu37t7v1"
+path="res://.godot/imported/collect4.wav-c10b9f70dc1086b98a1954c7ea32b184.sample"
+
+[deps]
+
+source_file="res://8 bit sound effects/collect sounds/collect4.wav"
+dest_files=["res://.godot/imported/collect4.wav-c10b9f70dc1086b98a1954c7ea32b184.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,22 @@
+[gd_resource type="Theme" format=3 uid="uid://3jm3cq4v5xyt"]
+
+[ext_resource type="FontFile" uid="uid://ic45by3lipcq" path="res://fonts/pico8.fnt" id="1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_none"]
+
+[resource]
+default_font = ExtResource("1")
+default_font_size = 6
+Button/colors/font_color = Color(0.603922, 0.67451, 0.713725, 1)
+Button/colors/font_disabled_color = Color(0.411765, 0.415686, 0.415686, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 0.541176, 0.117647, 1)
+Button/colors/font_pressed_color = Color(1, 0.541176, 0.117647, 1)
+Button/styles/disabled = SubResource("StyleBoxEmpty_none")
+Button/styles/focus = SubResource("StyleBoxEmpty_none")
+Button/styles/hover = SubResource("StyleBoxEmpty_none")
+Button/styles/normal = SubResource("StyleBoxEmpty_none")
+Button/styles/pressed = SubResource("StyleBoxEmpty_none")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/constants/line_spacing = 0

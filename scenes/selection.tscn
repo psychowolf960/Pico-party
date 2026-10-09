@@ -1,0 +1,180 @@
+[gd_scene format=3 uid="uid://bvpmf1hvmqflk"]
+
+[ext_resource type="Script" uid="uid://c6gprg4qcscmu" path="res://scripts/selection.gd" id="1_lti8b"]
+[ext_resource type="Script" path="res://addons/couch_party/couch_lobby.gd" id="2_lobby"]
+
+[node name="Selection" type="Control" unique_id=1855335853]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lti8b")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1786654424]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.180392, 0.101961, 0.368627, 1)
+
+[node name="Banner" type="ColorRect" parent="." unique_id=2116080651]
+layout_mode = 0
+offset_top = 20.0
+offset_right = 128.0
+offset_bottom = 45.0
+color = Color(0.0588235, 0.0431373, 0.14902, 1)
+
+[node name="Title" type="Label" parent="Banner" unique_id=13254615]
+layout_mode = 0
+offset_top = 5.0
+offset_right = 128.0
+offset_bottom = 11.0
+theme_override_colors/font_color = Color(0.984314, 0.94902, 0.211765, 1)
+text = "gus deluxe"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Banner" unique_id=1179034590]
+layout_mode = 0
+offset_top = 15.0
+offset_right = 128.0
+offset_bottom = 21.0
+theme_override_colors/font_color = Color(0.721569, 0.956863, 1, 1)
+text = "choose your character"
+horizontal_alignment = 1
+
+[node name="Items" type="HBoxContainer" parent="." unique_id=710544668]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 52.0
+offset_right = 128.0
+offset_bottom = 82.0
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Players" type="Button" parent="Items" unique_id=1621598637]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(27, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 0.541176, 0.117647, 1)
+text = "j1"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="Players2" type="Button" parent="Items" unique_id=141531542]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(27, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_colors/font_color = Color(0.309804, 0.823529, 1, 1)
+text = "j2"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="Players3" type="Button" parent="Items" unique_id=159999040]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(27, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_colors/font_color = Color(0.172549, 0.811765, 0.352941, 1)
+text = "j3"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="Players4" type="Button" parent="Items" unique_id=243182711]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(27, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_colors/font_color = Color(0.909804, 0.278431, 0.360784, 1)
+text = "j4"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="States" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 86.0
+offset_right = 128.0
+offset_bottom = 92.0
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="State" type="Label" parent="States"]
+custom_minimum_size = Vector2(27, 0)
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="State2" type="Label" parent="States"]
+custom_minimum_size = Vector2(27, 0)
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="State3" type="Label" parent="States"]
+custom_minimum_size = Vector2(27, 0)
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="State4" type="Label" parent="States"]
+custom_minimum_size = Vector2(27, 0)
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Sources" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 96.0
+offset_right = 128.0
+offset_bottom = 102.0
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Source" type="Label" parent="Sources"]
+custom_minimum_size = Vector2(27, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.721569, 0.956863, 1, 1)
+horizontal_alignment = 1
+
+[node name="Source2" type="Label" parent="Sources"]
+custom_minimum_size = Vector2(27, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.721569, 0.956863, 1, 1)
+horizontal_alignment = 1
+
+[node name="Source3" type="Label" parent="Sources"]
+custom_minimum_size = Vector2(27, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.721569, 0.956863, 1, 1)
+horizontal_alignment = 1
+
+[node name="Source4" type="Label" parent="Sources"]
+custom_minimum_size = Vector2(27, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.721569, 0.956863, 1, 1)
+horizontal_alignment = 1
+
+[node name="Lobby" type="Node" parent="."]
+script = ExtResource("2_lobby")
+
+[node name="Blink" type="Timer" parent="." unique_id=266400256]
+wait_time = 0.27
+autostart = true
+
+[node name="Help" type="Label" parent="." unique_id=54032762]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 116.0
+offset_right = 128.0
+offset_bottom = 122.0
+text = "o: rejoindre"
+horizontal_alignment = 1
+
+[connection signal="timeout" from="Blink" to="." method="_on_blink_timeout"]

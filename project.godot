@@ -1,0 +1,58 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Pico Proto"
+run/main_scene="res://scenes/menu.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+
+[autoload]
+
+Pico="*res://scripts/pico.gd"
+Transition="*res://scenes/transition.tscn"
+Sfx="*res://scripts/sfx.gd"
+CouchPlayers="*uid://birnkqdbjym67"
+CouchParty="*uid://dm4op6k8jycgd"
+
+[couch_party]
+
+input/shared_prefix="p8"
+split_screen/filler_color=Color(0.10980392, 0.07058824, 0.2509804, 1)
+party/lobby_scene="res://scenes/selection.tscn"
+party/menu_scene="res://scenes/menu.tscn"
+party/scores_scene="res://scenes/scores.tscn"
+
+[display]
+
+window/size/viewport_width=128
+window/size/viewport_height=128
+window/size/mode=3
+window/size/window_width_override=512
+window/size/window_height_override=512
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/couch_party/plugin.cfg")
+
+[gui]
+
+theme/custom="res://fonts/pico_theme.tres"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.12941177, 0.12156863, 0.20392157, 1)
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bj63y85xdfpn8"
+path="res://.godot/imported/selection3.wav-8935272f8c5592d20fe3258528bfcf48.sample"
+
+[deps]
+
+source_file="res://8 bit sound effects/Mainmenu sound/selection3.wav"
+dest_files=["res://.godot/imported/selection3.wav-8935272f8c5592d20fe3258528bfcf48.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

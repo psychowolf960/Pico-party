@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://shaders/death_particles.gdshader" id="1_shader"]
+[ext_resource type="Texture2D" uid="uid://dxhknd2pl080h" path="res://art/player.png" id="2_player"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_shader")
+shader_parameter/sprite = ExtResource("2_player")
+shader_parameter/sprite_hframes = 6
