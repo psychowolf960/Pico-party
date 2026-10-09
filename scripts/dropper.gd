@@ -2,7 +2,6 @@ extends Node2D
 
 const STARTS = [Vector2(0, 0), Vector2(8, 0), Vector2(-8, 0), Vector2(16, 0)]
 const MAX_FALL = 170.0
-const COUNTDOWN = 3
 
 var hearts = 0
 var views = []
@@ -32,22 +31,10 @@ func _ready():
 
 
 func count_down():
-	for n in range(COUNTDOWN, 0, -1):
-		show_countdown(str(n))
-		Sfx.play("tick")
-		await get_tree().create_timer(0.7).timeout
-	show_countdown("go !")
-	Sfx.play("start")
+	await Minigame.count_down(self, views)
 	%Trapdoor.enabled = false
 	for player in players:
 		player.set_physics_process(true)
-	await get_tree().create_timer(0.8).timeout
-	show_countdown("")
-
-
-func show_countdown(text):
-	for view in views:
-		view.hud.get_node("Countdown").text = text
 
 
 func _physics_process(_delta):

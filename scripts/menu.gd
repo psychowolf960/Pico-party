@@ -1,6 +1,7 @@
 extends Control
 
 const GAMES = [
+	{"name": "kong", "scene": "res://scenes/kong.tscn"},
 	{"name": "corde", "scene": "res://scenes/tug.tscn"},
 	{"name": "tag", "scene": "res://scenes/tag.tscn"},
 	{"name": "course", "scene": "res://scenes/game.tscn"},

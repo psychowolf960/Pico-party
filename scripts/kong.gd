@@ -1,31 +1,25 @@
 extends Node2D
 
-
 const STARTS = [Vector2(0, 0), Vector2(16, 0), Vector2(-16, 0), Vector2(32, 0)]
-const RISE = 6.0
-const RAMP = 0.5
+const BARREL = preload("res://scenes/kong_barrel.tscn")
+const FIRE_BARREL = preload("res://scenes/fire_barrel.tscn")
+const FIRST_WAIT = 2.5
+const SPEEDUP = 0.93
+const FIRE_CHANCE = 0.25
 
 var views = []
 var players = []
 var alive = []
 var scores = []
 var deaths = 0
-var water = 0.0
-var elapsed = 0.0
 var running = false
-@onready var start = %Water.position.y
 
 
 func _ready():
 	var bounds = Minigame.level_bounds(%Level)
-	%Water.size.y = bounds.size.y + CouchPlayers.view.y
-	water = start
-	views = CouchPlayers.split(self, STARTS)
+	views = CouchPlayers.shared_screen(self, STARTS)
 	for view in views:
 		players.append(view.player)
-		view.camera.bounds = bounds
-		view.camera.target = view.player
-		view.camera.snap()
 	for player in players:
 		player.respawns = false
 		player.fall_limit = bounds.end.y
@@ -37,41 +31,43 @@ func _ready():
 	for player in players:
 		player.set_physics_process(true)
 	running = true
+	%Spawn.wait_time = FIRST_WAIT
+	%Spawn.start()
+	throw(BARREL)
 
 
-func _physics_process(delta):
-	if not running:
-		return
-	elapsed += delta
-	water -= (RISE + RAMP * elapsed) * delta
-	%Water.position.y = water
-	for player in alive.duplicate():
-		if player.global_position.y - 6 > water:
-			player.die()
-	if alive.size() < 2:
-		end_game()
+func _on_spawn_timeout():
+	if randf() < FIRE_CHANCE:
+		throw(FIRE_BARREL)
+	else:
+		throw(BARREL)
+	%Spawn.wait_time = %Spawn.wait_time * SPEEDUP
 
 
-func _process(_delta):
-	if not alive:
-		return
-	var leader = alive[0]
-	for player in alive:
-		if player.global_position.y < leader.global_position.y:
-			leader = player
-	for view in views:
-		if view.player not in alive:
-			view.camera.target = leader
+func throw(scene):
+	var barrel = scene.instantiate()
+	barrel.position = %Thrower.position
+	for player in players:
+		barrel.add_collision_exception_with(player)
+	%Barrels.add_child(barrel)
+	Sfx.play("throw", randf_range(0.7, 0.8), -4.0)
+
+
+func _on_bin_body_entered(body):
+	body.queue_free()
 
 
 func _on_player_died(player):
 	alive.erase(player)
 	scores[player.index] = deaths
 	deaths += 1
+	if running and alive.size() < 2:
+		end_game()
 
 
 func end_game():
 	running = false
+	%Spawn.stop()
 	var title = "egalite !"
 	if alive:
 		var winner = alive[0]

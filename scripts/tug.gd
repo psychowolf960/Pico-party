@@ -11,7 +11,7 @@ var players = []
 var homes = []
 var rope = 0.0
 var shown = 0.0
-var running = true
+var running = false
 @onready var rope_x = %Rope.position.x
 
 
@@ -24,6 +24,8 @@ func _ready():
 		player.sprite.flip_h = team(player) == 1
 		player.sprite.play("run")
 		homes.append(player.position.x)
+	await Minigame.count_down(self, views)
+	running = true
 
 
 func team(player):

@@ -2,7 +2,6 @@ extends Node2D
 
 
 const STARTS = [Vector2(0, 0), Vector2(16, 0), Vector2(-16, 0), Vector2(32, 0)]
-const ROUNDS = 3
 const NORMAL_SPEED = 60.0
 const CURSED_SPEED = 50.0
 const TOUCH = 10.0
@@ -17,9 +16,8 @@ var views = []
 var players = []
 var alive = []
 var scores = []
-var rounds = 0
+var deaths = 0
 
-var elapsed = 0.0
 var running = false
 var cursed = null
 var giver = null
@@ -31,38 +29,26 @@ var tick = 0.0
 func _ready():
 	var bounds = Minigame.level_bounds(%Level)
 	views = CouchPlayers.shared_screen(self, STARTS)
-	CouchPlayers.resize(Vector2i(bounds.size))
-	%Camera.position = bounds.position
 	for view in views:
 		players.append(view.player)
 	for player in players:
 		player.respawns = false
 		player.fall_limit = bounds.end.y
 		player.died.connect(_on_player_died.bind(player))
-		scores.append(0)
-	new_round()
-
-
-func new_round():
-	rounds += 1
-	elapsed = 0.0
-	alive.clear()
-	cursed = null
-	for player in players:
-		player.revive()
-		player.speed = NORMAL_SPEED
-		player.get_node("Potatobomb").visible = false
+		player.set_physics_process(false)
 		alive.append(player)
-	$HUD/Round.text = "manche " + str(rounds) + "/" + str(ROUNDS)
+		scores.append(0)
+	await Minigame.count_down(self, views)
+	for player in players:
+		player.set_physics_process(true)
 	running = true
 
 
 func _physics_process(delta):
 	if not running:
 		return
-	elapsed += delta
 	if alive.size() < 2:
-		end_round()
+		end_game()
 		return
 	if cursed == null:
 		draw_bomber()
@@ -82,13 +68,32 @@ func _physics_process(delta):
 			continue
 		if player == giver and safe > 0:
 			continue
-		if cursed.global_position.distance_to(player.global_position) < TOUCH:
+		if touching(cursed, player):
 			curse(player, cursed)
 			break
 
 
+func touching(a, b):
+	if a.global_position.distance_to(b.global_position) < TOUCH:
+		return true
+	if stands_on(a, b):
+		return true
+	if stands_on(b, a):
+		return true
+	return false
+
+
+func stands_on(top, bottom):
+	for i in top.get_slide_collision_count():
+		if top.get_slide_collision(i).get_collider() == bottom:
+			return true
+	return false
+
+
 func _on_player_died(player):
 	alive.erase(player)
+	scores[player.index] = deaths
+	deaths += 1
 	if player == cursed:
 		player.get_node("Potatobomb").visible = false
 		cursed = null
@@ -122,21 +127,17 @@ func curse(player, from):
 		Sfx.play("pass")
 
 
-func end_round():
+func end_game():
 	running = false
 	var title = "egalite !"
 	if alive:
 		var winner = alive[0]
 		winner.set_physics_process(false)
-		scores[winner.index] += 1
+		scores[winner.index] = deaths
 		title = Minigame.win_title(winner.index)
-	Minigame.show_banner(views, title, Minigame.score_line(scores))
+	Minigame.show_banner(views, title)
 	await get_tree().create_timer(3.0).timeout
-	if rounds >= ROUNDS:
-		CouchParty.finish(CouchParty.rank(scores))
-		return
-	Minigame.hide_banner(views)
-	new_round()
+	CouchParty.finish(CouchParty.rank(scores))
 
 
 func _unhandled_input(event):

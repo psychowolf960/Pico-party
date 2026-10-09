@@ -65,6 +65,17 @@ Minigame.hide_banner(views)
 var bounds = Minigame.level_bounds(%Level)                  # Rect2 des tuiles du niveau
 ```
 
+Chaque jeu est en une seule manche et commence par le décompte « 3 2 1 go ! ».
+Il faut un label `HUD/Countdown` dans la scène :
+
+```gdscript
+for player in players:
+	player.set_physics_process(false)
+await Minigame.count_down(self, views)
+for player in players:
+	player.set_physics_process(true)
+```
+
 Pour revenir au menu avec Échap :
 
 ```gdscript

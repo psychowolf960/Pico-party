@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+# ca marche! pas toucher si possible ou bien commenter vos modifs!
 signal died
 
 const FEET = Vector2(0, 4)
@@ -280,7 +280,7 @@ func is_dazed():
 
 func stun(push):
 	stunned = 1.2
-	velocity = Vector2(push * 80, -100)
+	velocity = Vector2(push * 140, -160)
 	drop()
 	Sfx.play("hit")
 

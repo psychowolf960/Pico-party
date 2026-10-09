@@ -1,5 +1,5 @@
 extends Node2D
-
+#magie noire de particules, je sais pas comment ca marche
 var parts = []
 
 

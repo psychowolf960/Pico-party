@@ -3,7 +3,7 @@ extends Node
 const DIR = "res://8 bit sound effects/"
 const SOUNDS = {
 	"jump": ["jump1.wav"],
-	"land": ["drop1.wav"],
+	"land": ["land.wav"],
 	"step": ["step sound/step1.wav", "step sound/step3.wav"],
 	"die": ["explosion1.wav"],
 	"respawn": ["Misc/digitsound.wav"],

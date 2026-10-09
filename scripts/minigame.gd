@@ -35,3 +35,23 @@ static func show_banner(views, title, line = ""):
 static func hide_banner(views):
 	for view in views:
 		view.hud.get_node("Banner").hide()
+
+
+static func count_down(node, views):
+	for n in range(3, 0, -1):
+		show_countdown(views, str(n))
+		Sfx.play("tick")
+		await node.get_tree().create_timer(0.7).timeout
+	show_countdown(views, "go !")
+	Sfx.play("start")
+	hide_countdown_later(node, views)
+
+
+static func hide_countdown_later(node, views):
+	await node.get_tree().create_timer(0.8).timeout
+	show_countdown(views, "")
+
+
+static func show_countdown(views, text):
+	for view in views:
+		view.hud.get_node("Countdown").text = text

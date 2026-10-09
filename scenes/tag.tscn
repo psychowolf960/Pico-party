@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://b8kpdkw1w2vlb"]
 
+[ext_resource type="Script" path="res://scripts/screen_camera.gd" id="9_screen"]
 [ext_resource type="Script" uid="uid://csyrrx51ghfre" path="res://scripts/tag.gd" id="1_0l3ha"]
 [ext_resource type="TileSet" uid="uid://dyxe78ivp2i6y" path="res://art/terrain.tres" id="2_kvos3"]
 [ext_resource type="PackedScene" uid="uid://dc1jcn465sc0t" path="res://scenes/player.tscn" id="3_k8qvj"]
@@ -17,9 +18,11 @@ tile_set = ExtResource("2_kvos3")
 unique_name_in_owner = true
 respawns = false
 
-[node name="Camera" type="Camera2D" parent="." unique_id=527010038]
+[node name="Camera" type="Camera2D" parent="." unique_id=527010038 node_paths=PackedStringArray("level")]
 unique_name_in_owner = true
 anchor_mode = 0
+script = ExtResource("9_screen")
+level = NodePath("../Level")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1103645897]
 
@@ -32,18 +35,16 @@ theme_override_colors/font_color = Color(0.290196, 0.145098, 0.564706, 1)
 text = "esc menu"
 metadata/_edit_use_anchors_ = true
 
-[node name="Round" type="Label" parent="HUD" unique_id=1445681393]
-anchors_preset = 1
-anchor_left = 1.0
+[node name="Countdown" type="Label" parent="HUD" unique_id=53111636]
+anchors_preset = 10
 anchor_right = 1.0
-offset_left = -64.0
-offset_top = 1.0
-offset_right = -1.0
-offset_bottom = 7.0
-theme_override_colors/font_color = Color(0.721569, 0.956863, 1, 1)
-text = "manche 1"
-horizontal_alignment = 2
-metadata/_edit_use_anchors_ = true
+offset_top = 60.0
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.984314, 0.94902, 0.211765, 1)
+theme_override_font_sizes/font_size = 12
+text = "3"
+horizontal_alignment = 1
 
 [node name="Banner" type="ColorRect" parent="HUD" unique_id=23043805]
 visible = false

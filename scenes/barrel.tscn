@@ -1,7 +1,7 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bdeqog7bk423d"]
 
-[ext_resource type="Script" path="res://scripts/barrel.gd" id="1_barrel"]
-[ext_resource type="Texture2D" path="res://art/barrel.png" id="2_barrel"]
+[ext_resource type="Script" uid="uid://ukv7u8lk5jmr" path="res://scripts/barrel.gd" id="1_barrel"]
+[ext_resource type="Texture2D" uid="uid://5k0v137n82i6" path="res://art/barrel.png" id="2_barrel"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_body"]
 radius = 4.0
@@ -9,22 +9,22 @@ radius = 4.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_hit"]
 radius = 5.0
 
-[node name="Barrel" type="CharacterBody2D" groups=["barrel"]]
+[node name="Barrel" type="CharacterBody2D" unique_id=1716609873 groups=["barrel"]]
 collision_layer = 16
 collision_mask = 9
 script = ExtResource("1_barrel")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=102641110]
 texture = ExtResource("2_barrel")
 hframes = 9
 
-[node name="Shape" type="CollisionShape2D" parent="."]
+[node name="Shape" type="CollisionShape2D" parent="." unique_id=125411356]
 shape = SubResource("CircleShape2D_body")
 
-[node name="Hit" type="Area2D" parent="."]
+[node name="Hit" type="Area2D" parent="." unique_id=274081032]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="Shape" type="CollisionShape2D" parent="Hit"]
+[node name="Shape" type="CollisionShape2D" parent="Hit" unique_id=907662607]
 shape = SubResource("CircleShape2D_hit")

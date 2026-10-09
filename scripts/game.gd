@@ -12,6 +12,11 @@ func _ready():
 	views = CouchPlayers.split(self, STARTS)
 	for view in views:
 		players.append(view.player)
+	for player in players:
+		player.set_physics_process(false)
+	await Minigame.count_down(self, views)
+	for player in players:
+		player.set_physics_process(true)
 
 
 func _process(_delta):
