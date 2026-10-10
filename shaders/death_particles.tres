@@ -7,4 +7,4 @@
 resource_local_to_scene = true
 shader = ExtResource("1_shader")
 shader_parameter/sprite = ExtResource("2_player")
-shader_parameter/sprite_hframes = 8
+shader_parameter/sprite_hframes = 9

@@ -1,6 +1,6 @@
 extends Control
 
-
+const PLAYER = preload("res://scripts/player.gd")
 const DELAY = 0.8
 
 var wait = DELAY
@@ -13,10 +13,16 @@ func _ready():
 	for group in ranking:
 		order.append_array(group)
 	for i in order:
-		var row = Label.new()
-		row.text = "j" + str(i + 1) + "   +" + str(CouchParty.gained[i]) + "   " + str(CouchParty.scores[i]).lpad(2)
-		row.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		row.add_theme_color_override("font_color", Minigame.color(i))
+		var row = HBoxContainer.new()
+		row.alignment = BoxContainer.ALIGNMENT_CENTER
+		row.add_theme_constant_override("separation", 4)
+		var portrait = TextureRect.new()
+		portrait.texture = PLAYER.SKINS[CouchPlayers.skin(i)].get_frame_texture("portrait", 0)
+		row.add_child(portrait)
+		var label = Label.new()
+		label.text = "j" + str(i + 1) + "   +" + str(CouchParty.gained[i]) + "   " + str(CouchParty.scores[i]).lpad(2)
+		label.add_theme_color_override("font_color", Minigame.color(i))
+		row.add_child(label)
 		%Rows.add_child(row)
 	if not CouchParty.is_over():
 		%Title.text = "scores"
