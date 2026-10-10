@@ -2,8 +2,12 @@ extends Node2D
 
 
 const STARTS = [Vector2(0, 0), Vector2(16, 0), Vector2(-16, 0), Vector2(32, 0)]
-const RISE = 6.0
-const RAMP = 0.5
+const SCREEN = Vector2i(256, 144)
+const RISE = 8.0
+const RAMP = 0.04
+const CATCH_UP = 0.8
+const LEEWAY = 48.0
+const TOP_GAP = 92.0
 
 var views = []
 var players = []
@@ -17,15 +21,13 @@ var running = false
 
 
 func _ready():
+	CouchPlayers.resize(SCREEN)
 	var bounds = Minigame.level_bounds(%Level)
-	%Water.size.y = bounds.size.y + CouchPlayers.view.y
+	%Water.size.y = bounds.size.y + SCREEN.y
 	water = start
-	views = CouchPlayers.split(self, STARTS)
+	views = CouchPlayers.shared_screen(self, STARTS)
 	for view in views:
 		players.append(view.player)
-		view.camera.bounds = bounds
-		view.camera.target = view.player
-		view.camera.snap()
 	for player in players:
 		player.respawns = false
 		player.fall_limit = bounds.end.y
@@ -33,6 +35,10 @@ func _ready():
 		player.set_physics_process(false)
 		alive.append(player)
 		scores.append(0)
+	%Camera.bounds = bounds
+	%Camera.target = %Focus
+	follow_water()
+	%Camera.snap()
 	await Minigame.count_down(self, views)
 	for player in players:
 		player.set_physics_process(true)
@@ -43,7 +49,21 @@ func _physics_process(delta):
 	if not running:
 		return
 	elapsed += delta
-	water -= (RISE + RAMP * elapsed) * delta
+	var speed = RISE + RAMP * elapsed * elapsed
+	var lowest = alive[0]
+	var highest = alive[0]
+	for player in alive:
+		if player.global_position.y > lowest.global_position.y:
+			lowest = player
+		if player.global_position.y < highest.global_position.y:
+			highest = player
+	var gap = water - lowest.global_position.y - LEEWAY
+	if gap > 0:
+		speed += gap * CATCH_UP
+	var ahead = water - highest.global_position.y - TOP_GAP
+	if ahead > 0:
+		speed += ahead * CATCH_UP
+	water -= speed * delta
 	%Water.position.y = water
 	for player in alive.duplicate():
 		if player.global_position.y - 6 > water:
@@ -53,15 +73,11 @@ func _physics_process(delta):
 
 
 func _process(_delta):
-	if not alive:
-		return
-	var leader = alive[0]
-	for player in alive:
-		if player.global_position.y < leader.global_position.y:
-			leader = player
-	for view in views:
-		if view.player not in alive:
-			view.camera.target = leader
+	follow_water()
+
+
+func follow_water():
+	%Focus.global_position.y = water
 
 
 func _on_player_died(player):
@@ -72,13 +88,13 @@ func _on_player_died(player):
 
 func end_game():
 	running = false
-	var title = "egalite !"
 	if alive:
 		var winner = alive[0]
 		winner.set_physics_process(false)
 		scores[winner.index] = deaths
-		title = Minigame.win_title(winner.index)
-	Minigame.show_banner(views, title)
+		Minigame.show_winner(views, winner.index)
+	else:
+		Minigame.show_banner(views, "egalite !")
 	await get_tree().create_timer(3.0).timeout
 	CouchParty.finish(CouchParty.rank(scores))
 

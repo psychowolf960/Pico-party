@@ -1,7 +1,11 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://o8va8dbqrmc4"]
 
-[ext_resource type="Script" path="res://scripts/kong_barrel.gd" id="1_kbarrel"]
-[ext_resource type="Texture2D" path="res://art/fire_barrel.png" id="2_barrel"]
+[ext_resource type="Script" uid="uid://df7s0b11uxiar" path="res://scripts/kong_barrel.gd" id="1_kbarrel"]
+[ext_resource type="Texture2D" uid="uid://ijsjdfuyvg01" path="res://art/fire_barrel.png" id="2_barrel"]
+
+[sub_resource type="Gradient" id="Gradient_flames"]
+offsets = PackedFloat32Array(0, 0.35, 0.7, 1)
+colors = PackedColorArray(1, 0.95, 0.5, 1, 1, 0.6, 0.1, 1, 0.85, 0.2, 0.05, 0.8, 0.3, 0.1, 0.1, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_body"]
 radius = 4.0
@@ -9,23 +13,35 @@ radius = 4.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_hit"]
 radius = 4.0
 
-[node name="FireBarrel" type="CharacterBody2D"]
+[node name="FireBarrel" type="CharacterBody2D" unique_id=158902617]
 collision_layer = 16
 collision_mask = 9
 script = ExtResource("1_kbarrel")
 fire = true
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Flames" type="CPUParticles2D" parent="." unique_id=307747704]
+amount = 24
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 3.0
+direction = Vector2(0, -1)
+spread = 25.0
+gravity = Vector2(0, -20)
+initial_velocity_min = 10.0
+initial_velocity_max = 15.0
+color_ramp = SubResource("Gradient_flames")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=2087440495]
 texture = ExtResource("2_barrel")
 hframes = 9
 
-[node name="Shape" type="CollisionShape2D" parent="."]
+[node name="Shape" type="CollisionShape2D" parent="." unique_id=1024734808]
 shape = SubResource("CircleShape2D_body")
 
-[node name="Hit" type="Area2D" parent="."]
+[node name="Hit" type="Area2D" parent="." unique_id=1076939258]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="Shape" type="CollisionShape2D" parent="Hit"]
+[node name="Shape" type="CollisionShape2D" parent="Hit" unique_id=1341144136]
 shape = SubResource("CircleShape2D_hit")

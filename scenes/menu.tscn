@@ -92,7 +92,7 @@ offset_bottom = 122.0
 text = "/ confirm"
 horizontal_alignment = 1
 
-[connection signal="pressed" from="Items/Party" to="." method="_on_party_pressed"]
 [connection signal="pressed" from="Items/Characters" to="." method="_on_characters_pressed"]
+[connection signal="pressed" from="Items/Party" to="." method="_on_party_pressed"]
 [connection signal="pressed" from="Items/Quit" to="." method="_on_quit_pressed"]
 [connection signal="timeout" from="Cursor/Blink" to="." method="_on_blink_timeout"]

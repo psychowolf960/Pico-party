@@ -2,10 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://cgv6rpdbwygew" path="res://art/player4.png" id="1_sheet"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fall0"]
-atlas = ExtResource("1_sheet")
-region = Rect2(80, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_idle0"]
 atlas = ExtResource("1_sheet")
 region = Rect2(0, 0, 16, 16)
@@ -32,14 +28,6 @@ region = Rect2(96, 0, 16, 16)
 
 [resource]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fall0")
-}],
-"loop": 0,
-"name": &"fall",
-"speed": 1.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_idle0")

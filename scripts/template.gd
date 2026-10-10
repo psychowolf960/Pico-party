@@ -34,7 +34,7 @@ func show_scores():
 
 func win(player):
 	running = false
-	Minigame.show_banner(views, Minigame.win_title(player.index))
+	Minigame.show_winner(views, player.index)
 	Sfx.play("start")
 	await get_tree().create_timer(2.0).timeout
 	CouchParty.finish(CouchParty.rank(scores))

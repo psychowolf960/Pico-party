@@ -1,11 +1,12 @@
 extends Control
 
 const GAMES = [
+	{"name": "spleef", "scene": "res://scenes/spleef.tscn"},
 	{"name": "kong", "scene": "res://scenes/kong.tscn"},
+	{"name": "inondation", "scene": "res://scenes/flood.tscn"},
 	{"name": "corde", "scene": "res://scenes/tug.tscn"},
 	{"name": "tag", "scene": "res://scenes/tag.tscn"},
 	{"name": "course", "scene": "res://scenes/game.tscn"},
-	{"name": "inondation", "scene": "res://scenes/flood.tscn"},
 	{"name": "dropper", "scene": "res://scenes/dropper.tscn"},
 ]
 

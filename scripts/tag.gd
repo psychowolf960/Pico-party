@@ -3,7 +3,7 @@ extends Node2D
 
 const STARTS = [Vector2(0, 0), Vector2(16, 0), Vector2(-16, 0), Vector2(32, 0)]
 const NORMAL_SPEED = 60.0
-const CURSED_SPEED = 50.0
+const CURSED_SPEED = 62.0
 const TOUCH = 10.0
 const NO_GIVE_BACK = 1.0
 const FUSE = 15.0
@@ -118,24 +118,26 @@ func curse(player, from):
 	if cursed:
 		cursed.speed = NORMAL_SPEED
 		cursed.get_node("Potatobomb").visible = false
+		cursed.get_node("Sprite/Crown").visible = Minigame.is_leader(cursed.index)
 	cursed = player
 	giver = from
 	safe = NO_GIVE_BACK
 	player.speed = CURSED_SPEED
 	player.get_node("Potatobomb").visible = true
+	player.get_node("Sprite/Crown").visible = false
 	if from:
 		Sfx.play("pass")
 
 
 func end_game():
 	running = false
-	var title = "egalite !"
 	if alive:
 		var winner = alive[0]
 		winner.set_physics_process(false)
 		scores[winner.index] = deaths
-		title = Minigame.win_title(winner.index)
-	Minigame.show_banner(views, title)
+		Minigame.show_winner(views, winner.index)
+	else:
+		Minigame.show_banner(views, "egalite !")
 	await get_tree().create_timer(3.0).timeout
 	CouchParty.finish(CouchParty.rank(scores))
 

@@ -1,10 +1,10 @@
 extends Control
 
 
-const COLORS = [Color("ff8a1e"), Color("4fd2ff"), Color("2ccf5a"), Color("e8475c")]
 const DELAY = 0.8
 
 var wait = DELAY
+var leaving = false
 
 
 func _ready():
@@ -16,7 +16,7 @@ func _ready():
 		var row = Label.new()
 		row.text = "j" + str(i + 1) + "   +" + str(CouchParty.gained[i]) + "   " + str(CouchParty.scores[i]).lpad(2)
 		row.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		row.add_theme_color_override("font_color", COLORS[i])
+		row.add_theme_color_override("font_color", Minigame.color(i))
 		%Rows.add_child(row)
 	if not CouchParty.is_over():
 		%Title.text = "scores"
@@ -27,6 +27,7 @@ func _ready():
 			%Title.text = "egalite !"
 		else:
 			%Title.text = Minigame.win_title(winners[0])
+			%Title.add_theme_color_override("font_color", Minigame.color(winners[0]))
 		%Next.text = "retour au menu"
 	if CouchParty.is_over():
 		Sfx.play("start")
@@ -37,8 +38,12 @@ func _process(delta):
 
 
 func _unhandled_input(event):
+	if leaving:
+		return
 	if event.is_action_pressed("p8_menu"):
+		leaving = true
 		CouchParty.quit()
 	elif wait <= 0 and event.is_action_pressed("ui_accept"):
+		leaving = true
 		Sfx.play("start")
 		CouchParty.next()

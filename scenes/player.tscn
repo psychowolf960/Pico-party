@@ -5,6 +5,8 @@
 [ext_resource type="Material" path="res://shaders/death_particles.tres" id="7_part"]
 [ext_resource type="Texture2D" uid="uid://b011yh6bcb6rg" path="res://art/star.png" id="8_star"]
 [ext_resource type="Texture2D" uid="uid://cd88grnklbj7n" path="res://art/potato_bomb_sheet.png" id="9_bomb"]
+[ext_resource type="Texture2D" uid="uid://ddn0kwer14bjo" path="res://art/crown.png" id="10_crown"]
+[ext_resource type="Texture2D" uid="uid://b133dl5bmdtd5" path="res://art/arrow.png" id="11_arrow"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s0"]
 atlas = ExtResource("8_star")
@@ -59,6 +61,10 @@ sprite_frames = ExtResource("6_u5sy4")
 animation = &"wall"
 autoplay = "idle"
 
+[node name="Crown" type="Sprite2D" parent="Sprite" unique_id=1514594986]
+position = Vector2(0, -12)
+texture = ExtResource("10_crown")
+
 [node name="Stars" type="AnimatedSprite2D" parent="." unique_id=278383348]
 visible = false
 position = Vector2(0, -14)
@@ -94,5 +100,21 @@ visible = false
 position = Vector2(0, -17)
 texture = ExtResource("9_bomb")
 hframes = 4
+
+[node name="Name" type="Node2D" parent="." unique_id=983203]
+visible = false
+z_index = 10
+position = Vector2(0, -24)
+
+[node name="Arrow" type="Sprite2D" parent="Name" unique_id=916546630]
+texture = ExtResource("11_arrow")
+
+[node name="Label" type="Label" parent="Name" unique_id=556228528]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = -2.0
+text = "j1"
+horizontal_alignment = 1
 
 [connection signal="body_entered" from="DangerZone" to="." method="_on_danger_zone_body_entered"]

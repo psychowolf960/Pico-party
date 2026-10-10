@@ -73,7 +73,7 @@ func _on_goal_reached(body):
 	var hearts_won = []
 	for player in players:
 		hearts_won.append(player.love_points)
-	Minigame.show_banner(views, Minigame.win_title(body.index), Minigame.score_line(hearts_won))
+	Minigame.show_winner(views, body.index, Minigame.score_line(hearts_won))
 	await get_tree().create_timer(3.0).timeout
 	hearts_won[body.index] += 1000
 	CouchParty.finish(CouchParty.rank(hearts_won))

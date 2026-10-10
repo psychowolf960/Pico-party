@@ -7,6 +7,8 @@ const HARMLESS = 50.0
 const BLAST = 16.0
 const BOOM = preload("res://scenes/barrel_boom.tscn")
 @export var respawn_time = 3.0
+@export var respawns = true
+@export var fall_limit = 200.0
 var dead = false
 var holder = null
 var thrower = null
@@ -54,7 +56,7 @@ func _physics_process(delta):
 				velocity = Vector2(-velocity.x * 0.3, -80)
 				break
 
-	if position.y > 200:
+	if position.y > fall_limit:
 		vanish()
 
 
@@ -82,6 +84,11 @@ func release(vel):
 	$Shape.disabled = false
 	if test_move(transform, Vector2.ZERO):
 		global_position = thrower.global_position
+
+
+func launch(vel):
+	velocity = vel
+	sprite.frame = 0
 
 
 func bounce(power):
@@ -113,6 +120,9 @@ func vanish():
 	hide()
 	set_physics_process(false)
 	$Shape.set_deferred("disabled", true)
+	if not respawns:
+		queue_free()
+		return
 	await get_tree().create_timer(respawn_time).timeout
 	respawn()
 

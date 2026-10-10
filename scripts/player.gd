@@ -37,6 +37,9 @@ var dust = preload("res://scripts/dust.gd").new()
 
 func _ready():
 	sprite.sprite_frames = SKINS[CouchPlayers.skin(index)]
+	$Sprite/Crown.visible = Minigame.is_leader(index)
+	$Name/Label.text = "j" + str(index + 1)
+	$Name.modulate = Minigame.color(index)
 	add_child(dust, false, INTERNAL_MODE_FRONT)
 	for barrel in get_tree().get_nodes_in_group("barrel"):
 		barrel.add_collision_exception_with(self)
@@ -144,7 +147,7 @@ func animate(dazed, dir, wall, grounded):
 		sprite.flip_h = wall < 0
 		sprite.play("wall")
 	else:
-		sprite.play("jump" if velocity.y < 0 else "fall")
+		sprite.play("jump")
 
 
 func puff(offset, amount, vel, life):

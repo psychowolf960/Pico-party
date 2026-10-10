@@ -1,60 +1,53 @@
 extends Node2D
 
-const STARTS = [Vector2(0, 0), Vector2(16, 0), Vector2(-16, 0), Vector2(32, 0)]
-const BARREL = preload("res://scenes/kong_barrel.tscn")
-const FIRE_BARREL = preload("res://scenes/fire_barrel.tscn")
-const FIRST_WAIT = 2.5
-const SPEEDUP = 0.93
-const FIRE_CHANCE = 0.25
+
+const STARTS = [Vector2(0, 0), Vector2(56, 0), Vector2(16, 0), Vector2(40, 0)]
+const SKY_BARREL = preload("res://scenes/barrel.tscn")
+const SKY_SPEED = 120.0
 
 var views = []
-var players = []
 var alive = []
 var scores = []
 var deaths = 0
+var bottom = 0.0
 var running = false
 
 
 func _ready():
 	var bounds = Minigame.level_bounds(%Level)
-	views = CouchPlayers.shared_screen(self, STARTS)
+	bottom = bounds.end.y
+	for barrel in $Barrels.get_children():
+		barrel.fall_limit = bottom
+	views = CouchPlayers.split(self, STARTS)
 	for view in views:
-		players.append(view.player)
-	for player in players:
+		var player = view.player
+		view.camera.target = player
+		view.camera.bounds = bounds
 		player.respawns = false
-		player.fall_limit = bounds.end.y
+		player.fall_limit = bottom
 		player.died.connect(_on_player_died.bind(player))
 		player.set_physics_process(false)
 		alive.append(player)
 		scores.append(0)
 	await Minigame.count_down(self, views)
-	for player in players:
+	for player in alive:
 		player.set_physics_process(true)
 	running = true
-	%Spawn.wait_time = FIRST_WAIT
-	%Spawn.start()
-	throw(BARREL)
+	%Sky.start()
 
 
-func _on_spawn_timeout():
-	if randf() < FIRE_CHANCE:
-		throw(FIRE_BARREL)
-	else:
-		throw(BARREL)
-	%Spawn.wait_time = %Spawn.wait_time * SPEEDUP
-
-
-func throw(scene):
-	var barrel = scene.instantiate()
-	barrel.position = %Thrower.position
-	for player in players:
+func _on_sky_timeout():
+	var barrel = SKY_BARREL.instantiate()
+	barrel.position = Vector2(randf_range(12, 116), 4)
+	barrel.respawns = false
+	barrel.fall_limit = bottom
+	for player in alive:
 		barrel.add_collision_exception_with(player)
-	%Barrels.add_child(barrel)
-	Sfx.play("throw", randf_range(0.7, 0.8), -4.0)
-
-
-func _on_bin_body_entered(body):
-	body.queue_free()
+	$Barrels.add_child(barrel)
+	if randf() < 0.5:
+		barrel.launch(Vector2(-SKY_SPEED, 0))
+	else:
+		barrel.launch(Vector2(SKY_SPEED, 0))
 
 
 func _on_player_died(player):
@@ -67,7 +60,7 @@ func _on_player_died(player):
 
 func end_game():
 	running = false
-	%Spawn.stop()
+	%Sky.stop()
 	if alive:
 		var winner = alive[0]
 		winner.set_physics_process(false)
