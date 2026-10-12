@@ -1,0 +1,27 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/objects/heart.gd" id="1_heart"]
+[ext_resource type="Texture2D" path="res://art/objects/heart.png" id="2_heart"]
+[ext_resource type="Shader" path="res://shaders/death_particles.gdshader" id="3_shards"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_shards"]
+shader = ExtResource("3_shards")
+shader_parameter/sprite = ExtResource("2_heart")
+shader_parameter/sprite_hframes = 2
+
+[node name="Heart" type="Sprite2D"]
+z_index = 5
+texture = ExtResource("2_heart")
+centered = false
+offset = Vector2(-3, -3)
+hframes = 2
+script = ExtResource("1_heart")
+
+[node name="Shards" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 64
+lifetime = 0.9
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+process_material = SubResource("ShaderMaterial_shards")

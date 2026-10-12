@@ -1,0 +1,40 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/stories/story.tscn" id="1_story"]
+[ext_resource type="Script" path="res://scripts/stories/story_page.gd" id="2_page"]
+[ext_resource type="Texture2D" path="res://art/story/ending_1.png" id="3_ending_1"]
+[ext_resource type="SpriteFrames" path="res://art/story/player_frames.tres" id="frames_player"]
+[ext_resource type="SpriteFrames" path="res://art/story/recruiter_frames.tres" id="frames_recruiter"]
+
+[sub_resource type="Resource" id="Resource_page1"]
+script = ExtResource("2_page")
+image = ExtResource("3_ending_1")
+text = "felicitations ! le contrat
+est signe. bienvenue dans
+la grande famille.
+salaire : amour et 1 boule
+de gomme par mois."
+
+[node name="Story" instance=ExtResource("1_story")]
+pages = Array[ExtResource("2_page")]([SubResource("Resource_page1")])
+next_scene = ""
+
+[node name="Picture" parent="."]
+texture = ExtResource("3_ending_1")
+
+[node name="Page1" type="Node2D" parent="Picture/Actors"]
+
+[node name="Player" type="AnimatedSprite2D" parent="Picture/Actors/Page1"]
+position = Vector2(77, 40)
+sprite_frames = ExtResource("frames_player")
+animation = &"idle"
+autoplay = "idle"
+centered = false
+
+[node name="Recruiter" type="AnimatedSprite2D" parent="Picture/Actors/Page1"]
+position = Vector2(92, 32)
+sprite_frames = ExtResource("frames_recruiter")
+animation = &"idle"
+autoplay = "idle"
+centered = false
+flip_h = true

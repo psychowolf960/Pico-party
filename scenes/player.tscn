@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://dc1jcn465sc0t"]
 
-[ext_resource type="Script" uid="uid://cbv45ie5f62rb" path="res://scripts/player.gd" id="5_p57ef"]
-[ext_resource type="SpriteFrames" uid="uid://bauby2vxhwtjp" path="res://art/player_frames.tres" id="6_u5sy4"]
+[ext_resource type="Script" uid="uid://cbv45ie5f62rb" path="res://scripts/player/player.gd" id="5_p57ef"]
+[ext_resource type="SpriteFrames" uid="uid://bauby2vxhwtjp" path="res://art/characters/player_frames.tres" id="6_u5sy4"]
 [ext_resource type="Material" path="res://shaders/death_particles.tres" id="7_part"]
-[ext_resource type="Texture2D" uid="uid://b011yh6bcb6rg" path="res://art/star.png" id="8_star"]
-[ext_resource type="Texture2D" uid="uid://cd88grnklbj7n" path="res://art/potato_bomb_sheet.png" id="9_bomb"]
-[ext_resource type="Texture2D" uid="uid://ddn0kwer14bjo" path="res://art/crown.png" id="10_crown"]
-[ext_resource type="Texture2D" uid="uid://b133dl5bmdtd5" path="res://art/arrow.png" id="11_arrow"]
+[ext_resource type="Texture2D" uid="uid://b011yh6bcb6rg" path="res://art/ui/star.png" id="8_star"]
+[ext_resource type="Texture2D" uid="uid://cd88grnklbj7n" path="res://art/objects/potato_bomb_sheet.png" id="9_bomb"]
+[ext_resource type="Texture2D" uid="uid://ddn0kwer14bjo" path="res://art/ui/crown.png" id="10_crown"]
+[ext_resource type="Texture2D" uid="uid://b133dl5bmdtd5" path="res://art/ui/arrow.png" id="11_arrow"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s0"]
 atlas = ExtResource("8_star")
@@ -49,6 +49,9 @@ size = Vector2(6, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
 size = Vector2(4, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_punch"]
+size = Vector2(12, 10)
 
 [node name="Player" type="CharacterBody2D" unique_id=1761659817]
 collision_layer = 3
@@ -94,6 +97,24 @@ collision_mask = 4
 [node name="Hitbox" type="CollisionShape2D" parent="DangerZone" unique_id=1416547456]
 position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_hurt")
+
+[node name="PunchRight" type="Area2D" parent="." unique_id=1288430517]
+position = Vector2(8, -3)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="Hitbox" type="CollisionShape2D" parent="PunchRight" unique_id=1288430518]
+shape = SubResource("RectangleShape2D_punch")
+
+[node name="PunchLeft" type="Area2D" parent="." unique_id=1288430519]
+position = Vector2(-8, -3)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="Hitbox" type="CollisionShape2D" parent="PunchLeft" unique_id=1288430520]
+shape = SubResource("RectangleShape2D_punch")
 
 [node name="Potatobomb" type="Sprite2D" parent="." unique_id=1994852436]
 visible = false

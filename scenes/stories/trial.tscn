@@ -1,0 +1,54 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/stories/story.tscn" id="1_story"]
+[ext_resource type="Script" path="res://scripts/stories/story_page.gd" id="2_page"]
+[ext_resource type="Texture2D" path="res://art/story/trial.png" id="3_trial"]
+[ext_resource type="SpriteFrames" path="res://art/story/player_frames.tres" id="frames_player"]
+[ext_resource type="SpriteFrames" path="res://art/story/player2_frames.tres" id="frames_player2"]
+[ext_resource type="SpriteFrames" path="res://art/story/player3_frames.tres" id="frames_player3"]
+[ext_resource type="SpriteFrames" path="res://art/story/player4_frames.tres" id="frames_player4"]
+
+[sub_resource type="Resource" id="Resource_page1"]
+script = ExtResource("2_page")
+image = ExtResource("3_trial")
+text = "bonne nouvelle : vous etes
+tous pris ! en periode
+d'essai. a la fin, un seul
+signera le contrat."
+
+[node name="Story" instance=ExtResource("1_story")]
+pages = Array[ExtResource("2_page")]([SubResource("Resource_page1")])
+next_scene = "res://scenes/minigames/tug.tscn"
+
+[node name="Picture" parent="."]
+texture = ExtResource("3_trial")
+
+[node name="Page1" type="Node2D" parent="Picture/Actors"]
+
+[node name="Player" type="AnimatedSprite2D" parent="Picture/Actors/Page1"]
+position = Vector2(5, 34)
+sprite_frames = ExtResource("frames_player")
+animation = &"idle"
+autoplay = "idle"
+centered = false
+
+[node name="Player2" type="AnimatedSprite2D" parent="Picture/Actors/Page1"]
+position = Vector2(33, 34)
+sprite_frames = ExtResource("frames_player2")
+animation = &"idle"
+autoplay = "idle"
+centered = false
+
+[node name="Player3" type="AnimatedSprite2D" parent="Picture/Actors/Page1"]
+position = Vector2(61, 34)
+sprite_frames = ExtResource("frames_player3")
+animation = &"idle"
+autoplay = "idle"
+centered = false
+
+[node name="Player4" type="AnimatedSprite2D" parent="Picture/Actors/Page1"]
+position = Vector2(89, 34)
+sprite_frames = ExtResource("frames_player4")
+animation = &"idle"
+autoplay = "idle"
+centered = false

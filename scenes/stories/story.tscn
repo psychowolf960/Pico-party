@@ -1,0 +1,68 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/stories/story.gd" id="1_story"]
+
+[node name="Story" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_story")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0588235, 0.0431373, 0.14902, 1)
+
+[node name="Frame" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 5.0
+offset_right = 121.0
+offset_bottom = 71.0
+color = Color(0.478431, 0.247059, 0.839216, 1)
+
+[node name="Picture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 6.0
+offset_right = 120.0
+offset_bottom = 70.0
+
+[node name="Actors" type="Node2D" parent="Picture"]
+unique_name_in_owner = true
+
+[node name="Text" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 6.0
+offset_top = 76.0
+offset_right = 122.0
+offset_bottom = 116.0
+theme_override_colors/font_color = Color(0.984314, 0.94902, 0.211765, 1)
+theme_override_constants/line_spacing = 1
+autowrap_mode = 3
+visible_characters_behavior = 1
+
+[node name="Help" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 118.0
+offset_right = 128.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0.478431, 0.247059, 0.839216, 1)
+text = "/ continuer"
+horizontal_alignment = 1
+
+[node name="Blink" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[connection signal="timeout" from="Blink" to="." method="_on_blink_timeout"]

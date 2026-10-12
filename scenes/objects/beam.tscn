@@ -1,0 +1,9 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/objects/beam.gd" id="1_beam"]
+
+[node name="Beam" type="ColorRect"]
+offset_right = 1.0
+offset_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("1_beam")

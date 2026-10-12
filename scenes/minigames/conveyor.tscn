@@ -1,0 +1,214 @@
+[gd_scene format=4]
+
+[ext_resource type="Script" path="res://scripts/minigames/conveyor.gd" id="1_conveyor"]
+[ext_resource type="TileSet" uid="uid://3bhkpssciy6h" path="res://art/tilesets/terrain_industry.tres" id="2_terrain"]
+[ext_resource type="PackedScene" uid="uid://dc1jcn465sc0t" path="res://scenes/player.tscn" id="3_player"]
+[ext_resource type="Script" uid="uid://d2cw3agtbwnbu" path="res://scripts/cameras/screen_camera.gd" id="4_screen"]
+[ext_resource type="Texture2D" path="res://art/objects/belt.png" id="5_belt"]
+[ext_resource type="Texture2D" path="res://art/objects/roller.png" id="6_roller"]
+[ext_resource type="Texture2D" path="res://art/objects/belt_arrow.png" id="7_arrow"]
+[ext_resource type="Texture2D" path="res://art/objects/pipe.png" id="8_pipe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_belt"]
+size = Vector2(192, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bin"]
+size = Vector2(640, 16)
+
+[node name="Conveyor" type="Node2D"]
+script = ExtResource("1_conveyor")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Sky" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.133333, 0.12549, 0.203922, 1)
+
+[node name="Level" type="TileMapLayer" parent="."]
+unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAIAAAABAAAAAAABAAIAAAACAAAAAAABAAIAAAADAAAAAAABAAIAAAAEAAAAAAABAAIAAAAFAAAAAAABAAIAAAAGAAAAAAABAAIAAAAHAAAAAAABAAIAAAAIAAAAAAABAAIAAAAJAAAAAAABAAIAAAAKAAAAAAABAAIAAAALAAAAAAABAAIAAAAMAAAAAAABAAIAAAANAAAAAAABAAIAAAAOAAAAAAABAAIAAAAPAAAAAAABAAIAAAAQAAAAAAABAAIAAAARAAAAAAABAAIAAAASAAAAAAABAAIAAAATAAAAAAABAAIAAAAUAAAAAAABAAIAAAAVAAAAAAABAAIAAAAWAAAAAAABAAIAAAAXAAAAAAABAAIAAAAYAAAAAAABAAIAAAAZAAAAAAABAAIAAAAaAAAAAAABAAIAAAAbAAAAAAABAAIAAAAcAAAAAAABAAIAAAAdAAAAAAABAAIAAAAeAAAAAAABAAIAAAAfAAAAAAABAAIAAAAEAA4AAAAAAAAAAAAFAA4AAAABAAAAAAAGAA4AAAABAAAAAAAHAA4AAAABAAAAAAAIAA4AAAABAAAAAAAJAA4AAAABAAAAAAAKAA4AAAABAAAAAAALAA4AAAABAAAAAAAMAA4AAAABAAAAAAANAA4AAAABAAAAAAAOAA4AAAABAAAAAAAPAA4AAAABAAAAAAAQAA4AAAABAAAAAAARAA4AAAABAAAAAAASAA4AAAABAAAAAAATAA4AAAABAAAAAAAUAA4AAAABAAAAAAAVAA4AAAABAAAAAAAWAA4AAAABAAAAAAAXAA4AAAABAAAAAAAYAA4AAAABAAAAAAAZAA4AAAABAAAAAAAaAA4AAAABAAAAAAAbAA4AAAACAAAAAAAEAA8AAAAAAAEAAAAFAA8AAAABAAEAAAAGAA8AAAABAAEAAAAHAA8AAAABAAEAAAAIAA8AAAABAAEAAAAJAA8AAAABAAEAAAAKAA8AAAABAAEAAAALAA8AAAABAAEAAAAMAA8AAAABAAEAAAANAA8AAAABAAEAAAAOAA8AAAABAAEAAAAPAA8AAAABAAEAAAAQAA8AAAABAAEAAAARAA8AAAABAAEAAAASAA8AAAABAAEAAAATAA8AAAABAAEAAAAUAA8AAAABAAEAAAAVAA8AAAABAAEAAAAWAA8AAAABAAEAAAAXAA8AAAABAAEAAAAYAA8AAAABAAEAAAAZAA8AAAABAAEAAAAaAA8AAAABAAEAAAAbAA8AAAACAAEAAAAEABAAAAAAAAEAAAAFABAAAAABAAEAAAAGABAAAAABAAEAAAAHABAAAAABAAEAAAAIABAAAAABAAEAAAAJABAAAAABAAEAAAAKABAAAAABAAEAAAALABAAAAABAAEAAAAMABAAAAABAAEAAAANABAAAAABAAEAAAAOABAAAAABAAEAAAAPABAAAAABAAEAAAAQABAAAAABAAEAAAARABAAAAABAAEAAAASABAAAAABAAEAAAATABAAAAABAAEAAAAUABAAAAABAAEAAAAVABAAAAABAAEAAAAWABAAAAABAAEAAAAXABAAAAABAAEAAAAYABAAAAABAAEAAAAZABAAAAABAAEAAAAaABAAAAABAAEAAAAbABAAAAACAAEAAAAEABEAAAAAAAEAAAAFABEAAAABAAEAAAAGABEAAAABAAEAAAAHABEAAAABAAEAAAAIABEAAAABAAEAAAAJABEAAAABAAEAAAAKABEAAAABAAEAAAALABEAAAABAAEAAAAMABEAAAABAAEAAAANABEAAAABAAEAAAAOABEAAAABAAEAAAAPABEAAAABAAEAAAAQABEAAAABAAEAAAARABEAAAABAAEAAAASABEAAAABAAEAAAATABEAAAABAAEAAAAUABEAAAABAAEAAAAVABEAAAABAAEAAAAWABEAAAABAAEAAAAXABEAAAABAAEAAAAYABEAAAABAAEAAAAZABEAAAABAAEAAAAaABEAAAABAAEAAAAbABEAAAACAAEAAAAAABEAAAAEAAMAAAABABEAAAAEAAMAAAACABEAAAAEAAMAAAADABEAAAAEAAMAAAAcABEAAAAEAAMAAAAdABEAAAAEAAMAAAAeABEAAAAEAAMAAAAfABEAAAAEAAMAAAA=")
+tile_set = ExtResource("2_terrain")
+
+[node name="Vegetation" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAABAAEAAAAEAAAAAAALAAEAAAAFAAAAAAATAAEAAAAGAAQAAAAbAAEAAAAFAAIAAAAeAAEAAAAEAAAAABA=")
+tile_set = ExtResource("2_terrain")
+
+[node name="Belt" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(128, 108)
+
+[node name="Shape" type="CollisionShape2D" parent="Belt"]
+shape = SubResource("RectangleShape2D_belt")
+
+[node name="Tread" type="Sprite2D" parent="Belt"]
+unique_name_in_owner = true
+texture_repeat = 2
+texture = ExtResource("5_belt")
+region_enabled = true
+region_rect = Rect2(0, 0, 192, 8)
+
+[node name="RollerLeft" type="Sprite2D" parent="Belt"]
+unique_name_in_owner = true
+position = Vector2(-92, 0)
+texture = ExtResource("6_roller")
+hframes = 4
+
+[node name="RollerRight" type="Sprite2D" parent="Belt"]
+unique_name_in_owner = true
+position = Vector2(92, 0)
+texture = ExtResource("6_roller")
+hframes = 4
+
+[node name="Arrows" type="Node2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+
+[node name="Arrow1" type="Sprite2D" parent="Arrows"]
+position = Vector2(56, 124)
+texture = ExtResource("7_arrow")
+
+[node name="Arrow2" type="Sprite2D" parent="Arrows"]
+position = Vector2(80, 124)
+texture = ExtResource("7_arrow")
+
+[node name="Arrow3" type="Sprite2D" parent="Arrows"]
+position = Vector2(104, 124)
+texture = ExtResource("7_arrow")
+
+[node name="Arrow4" type="Sprite2D" parent="Arrows"]
+position = Vector2(128, 124)
+texture = ExtResource("7_arrow")
+
+[node name="Arrow5" type="Sprite2D" parent="Arrows"]
+position = Vector2(152, 124)
+texture = ExtResource("7_arrow")
+
+[node name="Arrow6" type="Sprite2D" parent="Arrows"]
+position = Vector2(176, 124)
+texture = ExtResource("7_arrow")
+
+[node name="Arrow7" type="Sprite2D" parent="Arrows"]
+position = Vector2(200, 124)
+texture = ExtResource("7_arrow")
+
+[node name="Junk" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Pipes" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Pipe1" type="Sprite2D" parent="Pipes"]
+position = Vector2(64, 20)
+texture = ExtResource("8_pipe")
+hframes = 2
+
+[node name="Pipe2" type="Sprite2D" parent="Pipes"]
+position = Vector2(128, 20)
+texture = ExtResource("8_pipe")
+hframes = 2
+
+[node name="Pipe3" type="Sprite2D" parent="Pipes"]
+position = Vector2(192, 20)
+texture = ExtResource("8_pipe")
+hframes = 2
+
+[node name="Bin" type="Area2D" parent="."]
+position = Vector2(128, 184)
+collision_layer = 0
+collision_mask = 32
+monitorable = false
+
+[node name="Shape" type="CollisionShape2D" parent="Bin"]
+shape = SubResource("RectangleShape2D_bin")
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+unique_name_in_owner = true
+position = Vector2(80, 99)
+
+[node name="Camera" type="Camera2D" parent="." node_paths=PackedStringArray("level")]
+unique_name_in_owner = true
+anchor_mode = 0
+script = ExtResource("4_screen")
+screen = 2
+level = NodePath("../Level")
+
+[node name="Flip" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="Drop" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 2.2
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Help" type="Label" parent="HUD"]
+offset_left = 4.0
+offset_top = 1.0
+offset_right = 4.0
+offset_bottom = 1.0
+theme_override_colors/font_color = Color(0.290196, 0.145098, 0.564706, 1)
+text = "esc menu"
+
+[node name="Countdown" type="Label" parent="HUD"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 54.0
+offset_bottom = 66.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.984314, 0.94902, 0.211765, 1)
+theme_override_font_sizes/font_size = 12
+text = "3"
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="HUD"]
+unique_name_in_owner = true
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 72.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.721569, 0.956863, 1, 1)
+text = "stagiaire, reste sur le tapis !"
+horizontal_alignment = 1
+
+[node name="Banner" type="ColorRect" parent="HUD"]
+visible = false
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -14.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0588235, 0.0431373, 0.14902, 1)
+
+[node name="Bravo" type="Label" parent="HUD/Banner"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 6.0
+offset_bottom = 12.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.984314, 0.94902, 0.211765, 1)
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="HUD/Banner"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 16.0
+offset_bottom = 22.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.721569, 0.956863, 1, 1)
+horizontal_alignment = 1
+
+[connection signal="timeout" from="Flip" to="." method="_on_flip_timeout"]
+[connection signal="timeout" from="Drop" to="." method="_on_drop_timeout"]
+[connection signal="body_entered" from="Bin" to="." method="_on_bin_body_entered"]

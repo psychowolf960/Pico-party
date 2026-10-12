@@ -1,0 +1,306 @@
+[gd_scene format=3 uid="uid://l25ip8al4ing"]
+
+[ext_resource type="Script" uid="uid://cfj7l0olmc78p" path="res://scripts/minigames/bullet_hell.gd" id="1_hell"]
+[ext_resource type="PackedScene" uid="uid://dc1jcn465sc0t" path="res://scenes/player.tscn" id="2_player"]
+[ext_resource type="Texture2D" uid="uid://bg70gxqsdnrr4" path="res://art/characters/boss.png" id="3_boss"]
+[ext_resource type="PackedScene" path="res://scenes/objects/heart.tscn" id="4_heart"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_open"]
+atlas = ExtResource("3_boss")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blink"]
+atlas = ExtResource("3_boss")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_boss"]
+animations = [{
+"frames": [{
+"duration": 12.0,
+"texture": SubResource("AtlasTexture_open")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blink")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hp_back"]
+bg_color = Color(0.67451, 0.192157, 0.192157, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hp_fill"]
+bg_color = Color(0.984314, 0.94902, 0.211765, 1)
+anti_aliasing = false
+
+[node name="BulletHell" type="Node2D" unique_id=1830033442]
+script = ExtResource("1_hell")
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=1209149369]
+layer = -1
+
+[node name="Sky" type="ColorRect" parent="Background" unique_id=1487370434]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Boss" type="AnimatedSprite2D" parent="." unique_id=1452266844]
+unique_name_in_owner = true
+position = Vector2(64, 20)
+sprite_frames = SubResource("SpriteFrames_boss")
+autoplay = "default"
+
+[node name="Border" type="ColorRect" parent="." unique_id=309368433]
+offset_left = 9.0
+offset_top = 35.0
+offset_right = 119.0
+offset_bottom = 115.0
+mouse_filter = 2
+
+[node name="BlueBorder" type="ColorRect" parent="." unique_id=812163282]
+unique_name_in_owner = true
+visible = false
+offset_left = 9.0
+offset_top = 35.0
+offset_right = 119.0
+offset_bottom = 115.0
+mouse_filter = 2
+color = Color(0.235294, 0.392157, 1, 1)
+
+[node name="Box" type="ColorRect" parent="." unique_id=521209758]
+unique_name_in_owner = true
+clip_contents = true
+offset_left = 10.0
+offset_top = 36.0
+offset_right = 118.0
+offset_bottom = 114.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Hearts" type="Node2D" parent="." unique_id=2037005307]
+unique_name_in_owner = true
+visible = false
+position = Vector2(10, 36)
+
+[node name="Heart1" parent="Hearts" unique_id=222434948 node_paths=PackedStringArray("life") instance=ExtResource("4_heart")]
+position = Vector2(46, 60)
+life = NodePath("../../HUD/Lives/Life1")
+
+[node name="Heart2" parent="Hearts" unique_id=1634175479 node_paths=PackedStringArray("life") instance=ExtResource("4_heart")]
+position = Vector2(62, 60)
+index = 1
+life = NodePath("../../HUD/Lives/Life2")
+
+[node name="Heart3" parent="Hearts" unique_id=188320014 node_paths=PackedStringArray("life") instance=ExtResource("4_heart")]
+position = Vector2(30, 60)
+index = 2
+life = NodePath("../../HUD/Lives/Life3")
+
+[node name="Heart4" parent="Hearts" unique_id=612934452 node_paths=PackedStringArray("life") instance=ExtResource("4_heart")]
+position = Vector2(78, 60)
+index = 3
+life = NodePath("../../HUD/Lives/Life4")
+
+[node name="Player" parent="." unique_id=1013448171 instance=ExtResource("2_player")]
+unique_name_in_owner = true
+position = Vector2(56, 100)
+
+[node name="Camera" type="Camera2D" parent="." unique_id=911674244]
+unique_name_in_owner = true
+anchor_mode = 0
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1083148682]
+
+[node name="Help" type="Label" parent="HUD" unique_id=1321041405]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
+theme_override_colors/font_color = Color(0.290196, 0.145098, 0.564706, 1)
+text = "esc menu"
+
+[node name="Time" type="Label" parent="HUD" unique_id=1435154668]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_top = 1.0
+offset_right = -2.0
+offset_bottom = 7.0
+grow_horizontal = 0
+text = "60"
+horizontal_alignment = 2
+
+[node name="Intro" type="Label" parent="HUD" unique_id=2127783918]
+unique_name_in_owner = true
+offset_left = 13.0
+offset_top = 39.0
+offset_right = 115.0
+offset_bottom = 45.0
+text = "* la direction surgit !"
+
+[node name="JumpHint" type="Label" parent="HUD" unique_id=2021727374]
+unique_name_in_owner = true
+visible = false
+offset_left = 13.0
+offset_top = 39.0
+offset_right = 115.0
+offset_bottom = 45.0
+text = "o ou haut : sauter"
+
+[node name="Countdown" type="Label" parent="HUD" unique_id=1763987323]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 48.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.984314, 0.94902, 0.211765, 1)
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+
+[node name="Lives" type="HBoxContainer" parent="HUD" unique_id=1913504871]
+unique_name_in_owner = true
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -9.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Life1" type="Control" parent="HUD/Lives" unique_id=283182607]
+custom_minimum_size = Vector2(30, 6)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HUD/Lives/Life1" unique_id=1209706446]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 6.0
+text = "j1"
+
+[node name="Bar" type="ProgressBar" parent="HUD/Lives/Life1" unique_id=1644733084]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 1.0
+offset_right = 30.0
+offset_bottom = 5.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_hp_back")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hp_fill")
+max_value = 5.0
+step = 1.0
+value = 5.0
+show_percentage = false
+
+[node name="Life2" type="Control" parent="HUD/Lives" unique_id=1227848186]
+custom_minimum_size = Vector2(30, 6)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HUD/Lives/Life2" unique_id=1877162528]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 6.0
+text = "j2"
+
+[node name="Bar" type="ProgressBar" parent="HUD/Lives/Life2" unique_id=1658464238]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 1.0
+offset_right = 30.0
+offset_bottom = 5.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_hp_back")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hp_fill")
+max_value = 5.0
+step = 1.0
+value = 5.0
+show_percentage = false
+
+[node name="Life3" type="Control" parent="HUD/Lives" unique_id=578475508]
+custom_minimum_size = Vector2(30, 6)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HUD/Lives/Life3" unique_id=47223865]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 6.0
+text = "j3"
+
+[node name="Bar" type="ProgressBar" parent="HUD/Lives/Life3" unique_id=105883453]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 1.0
+offset_right = 30.0
+offset_bottom = 5.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_hp_back")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hp_fill")
+max_value = 5.0
+step = 1.0
+value = 5.0
+show_percentage = false
+
+[node name="Life4" type="Control" parent="HUD/Lives" unique_id=633887924]
+custom_minimum_size = Vector2(30, 6)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HUD/Lives/Life4" unique_id=402464863]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 6.0
+text = "j4"
+
+[node name="Bar" type="ProgressBar" parent="HUD/Lives/Life4" unique_id=314951344]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 1.0
+offset_right = 30.0
+offset_bottom = 5.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_hp_back")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hp_fill")
+max_value = 5.0
+step = 1.0
+value = 5.0
+show_percentage = false
+
+[node name="Banner" type="ColorRect" parent="HUD" unique_id=868831813]
+visible = false
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -14.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Bravo" type="Label" parent="HUD/Banner" unique_id=288674484]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 6.0
+offset_bottom = 12.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.984314, 0.94902, 0.211765, 1)
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="HUD/Banner" unique_id=1583991111]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 16.0
+offset_bottom = 22.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.721569, 0.956863, 1, 1)
+horizontal_alignment = 1

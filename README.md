@@ -55,7 +55,7 @@ CouchParty.finish([[2], [0, 1], [3]])
 CouchParty.finish(CouchParty.rank(scores))
 ```
 
-Pour afficher les scores et le bandeau de fin `scripts/minigame.gd` :
+Pour afficher les scores et le bandeau de fin `scripts/minigames/minigame.gd` :
 
 ```gdscript
 $HUD/Scores.text = Minigame.score_line(scores)              # "j1 3  j2 0"
@@ -86,10 +86,10 @@ func _unhandled_input(event):
 
 ## 5. Ajouter le jeu au menu
 
-Dans `scripts/menu.gd`,
+Dans `scripts/ui/menu.gd`,
 
 ```gdscript
-{"name": "jeu", "scene": "res://scenes/mon_jeu.tscn"},
+{"name": "jeu", "scene": "res://scenes/minigames/mon_jeu.tscn"},
 ```
 
 

@@ -1,0 +1,13 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/objects/bone.gd" id="1_bone"]
+[ext_resource type="Texture2D" path="res://art/objects/bone.png" id="2_bone"]
+
+[node name="Bone" type="NinePatchRect"]
+offset_right = 3.0
+offset_bottom = 5.0
+mouse_filter = 2
+texture = ExtResource("2_bone")
+patch_margin_top = 2
+patch_margin_bottom = 2
+script = ExtResource("1_bone")

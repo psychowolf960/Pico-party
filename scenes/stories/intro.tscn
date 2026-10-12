@@ -1,0 +1,49 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/stories/story.tscn" id="1_story"]
+[ext_resource type="Script" path="res://scripts/stories/story_page.gd" id="2_page"]
+[ext_resource type="Texture2D" path="res://art/story/intro_1.png" id="3_intro_1"]
+[ext_resource type="Texture2D" path="res://art/story/intro_2.png" id="4_intro_2"]
+[ext_resource type="SpriteFrames" path="res://art/story/player_frames.tres" id="frames_player"]
+
+[sub_resource type="Resource" id="Resource_page1"]
+script = ExtResource("2_page")
+image = ExtResource("3_intro_1")
+text = "rentree dans 15 jours.
+pas d'alternance,
+pas de diplome.
+il reste une seule offre."
+
+[sub_resource type="Resource" id="Resource_page2"]
+script = ExtResource("2_page")
+image = ExtResource("4_intro_2")
+text = "gus deluxe recrute 1 (un)
+alternant. salaire : amour
+et boules de gomme.
+les candidats se bousculent.
+une seule place."
+
+[node name="Story" instance=ExtResource("1_story")]
+pages = Array[ExtResource("2_page")]([SubResource("Resource_page1"), SubResource("Resource_page2")])
+next_scene = "res://scenes/minigames/game.tscn"
+
+[node name="Picture" parent="."]
+texture = ExtResource("3_intro_1")
+
+[node name="Page1" type="Node2D" parent="Picture/Actors"]
+
+[node name="Player" type="AnimatedSprite2D" parent="Picture/Actors/Page1"]
+position = Vector2(42, 31)
+sprite_frames = ExtResource("frames_player")
+animation = &"idle"
+autoplay = "idle"
+centered = false
+
+[node name="Page2" type="Node2D" parent="Picture/Actors"]
+
+[node name="Player" type="AnimatedSprite2D" parent="Picture/Actors/Page2"]
+position = Vector2(21, 33)
+sprite_frames = ExtResource("frames_player")
+animation = &"idle"
+autoplay = "idle"
+centered = false

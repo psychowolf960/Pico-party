@@ -1,0 +1,51 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/objects/hole.gd" id="1_hole"]
+[ext_resource type="Texture2D" uid="uid://cdff4sbohydh5" path="res://art/objects/hatch.png" id="2_hatch"]
+[ext_resource type="Texture2D" uid="uid://b133dl5bmdtd5" path="res://art/ui/arrow.png" id="3_arrow"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lid"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_inside"]
+size = Vector2(4, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_shaft"]
+size = Vector2(6, 16)
+
+[node name="Hole" type="Node2D"]
+script = ExtResource("1_hole")
+
+[node name="Lid" type="StaticBody2D" parent="."]
+position = Vector2(0, 4)
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Lid"]
+texture = ExtResource("2_hatch")
+
+[node name="Shape" type="CollisionShape2D" parent="Lid"]
+shape = SubResource("RectangleShape2D_lid")
+
+[node name="Inside" type="Area2D" parent="."]
+position = Vector2(0, 12)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="Shape" type="CollisionShape2D" parent="Inside"]
+shape = SubResource("RectangleShape2D_inside")
+
+[node name="Shaft" type="Area2D" parent="."]
+position = Vector2(0, 8)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="Shape" type="CollisionShape2D" parent="Shaft"]
+shape = SubResource("RectangleShape2D_shaft")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+position = Vector2(0, -5)
+texture = ExtResource("3_arrow")

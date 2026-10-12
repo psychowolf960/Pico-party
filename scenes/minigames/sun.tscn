@@ -1,0 +1,121 @@
+[gd_scene format=4]
+
+[ext_resource type="Script" path="res://scripts/minigames/sun.gd" id="1_sun"]
+[ext_resource type="PackedScene" uid="uid://dc1jcn465sc0t" path="res://scenes/player.tscn" id="2_player"]
+[ext_resource type="TileSet" uid="uid://b4dcqa33st4he" path="res://art/tilesets/terrain_office.tres" id="3_terrain"]
+[ext_resource type="PackedScene" path="res://scenes/objects/goal.tscn" id="4_goal"]
+[ext_resource type="Texture2D" uid="uid://idecdb4it3kw" path="res://art/objects/sun.png" id="5_sun"]
+[ext_resource type="PackedScene" uid="uid://bdeqog7bk423d" path="res://scenes/objects/barrel.tscn" id="6_barrel"]
+
+[node name="SunGame" type="Node2D"]
+script = ExtResource("1_sun")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Red" type="ColorRect" parent="Background"]
+unique_name_in_owner = true
+offset_right = 256.0
+offset_bottom = 144.0
+color = Color(0.67451, 0.196078, 0.196078, 1)
+
+[node name="Level" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAAACAAEAAAAAAAEAAAACAAEAAAAAAAIAAAACAAEAAAAAAAMAAAACAAEAAAAAAAQAAAACAAEAAAAAAAUAAAACAAEAAAAAAAYAAAACAAEAAAAAAAcAAAACAAEAAAAAAAgAAAACAAEAAAAAAAkAAAACAAEAAAAAAAoAAAACAAEAAAAAAAsAAAACAAEAAAAAAAwAAAACAAEAAAAAAA0AAAACAAEAAAAAAA4AAAACAAEAAAAAAA8AAAACAAEAAAAAABAAAAACAAEAAAAAABEAAAACAAEAAAABAAgAAQAAAAAAAAABAAoAAAABAAMAAAABABAAAAABAAAAAAABABEAAAABAAEAAAACAAgAAQABAAAAAAACAAoAAAABAAMAAAACABAAAAABAAAAAAACABEAAAABAAEAAAADAAYAAQAAAAAAAAADAAgAAQACAAAAAAADAAoAAAABAAMAAAADABAAAAABAAAAAAADABEAAAABAAEAAAAEAAYAAQABAAAAAAAEAAoAAAABAAMAAAAEABAAAAABAAAAAAAEABEAAAABAAEAAAAFAAYAAQACAAAAAAAFAAkAAAADAAMAAAAFAAoAAAABAAMAAAAFABAAAAABAAAAAAAFABEAAAABAAEAAAAGAAQAAAAAAAMAAAAGAAoAAAABAAMAAAAGABAAAAABAAAAAAAGABEAAAABAAEAAAAHAAQAAAABAAMAAAAHAAoAAAABAAMAAAAHABAAAAABAAAAAAAHABEAAAABAAEAAAAIAAQAAAABAAMAAAAIAAoAAAABAAMAAAAIABAAAAABAAAAAAAIABEAAAABAAEAAAAJAAQAAAABAAMAAAAJAAoAAAABAAMAAAAJAA8AAAADAAAAAAAJABAAAAABAAEAAAAJABEAAAABAAEAAAAKAAQAAAABAAMAAAAKAAoAAAABAAMAAAAKABAAAAABAAAAAAAKABEAAAABAAEAAAALAAQAAAABAAMAAAALAAoAAAACAAMAAAALABAAAAABAAAAAAALABEAAAABAAEAAAAMAAQAAAABAAMAAAAMABAAAAABAAAAAAAMABEAAAABAAEAAAANAAQAAAABAAMAAAANABAAAAACAAAAAAANABEAAAACAAEAAAAOAAQAAAABAAMAAAAOAAoAAAAAAAMAAAAPAAQAAAACAAMAAAAPAAoAAAABAAMAAAAQAAoAAAABAAMAAAAQABAAAAAAAAAAAAAQABEAAAAAAAEAAAARAAoAAAABAAMAAAARABAAAAABAAAAAAARABEAAAABAAEAAAASAAQAAAAAAAMAAAASAAkAAAAEAAMAAAASAAoAAAABAAMAAAASABAAAAABAAAAAAASABEAAAABAAEAAAATAAQAAAABAAMAAAATAAkAAAAEAAMAAAATAAoAAAABAAMAAAATABAAAAABAAAAAAATABEAAAABAAEAAAAUAAQAAAABAAMAAAAUAAoAAAABAAMAAAAUAA8AAAAEAAMAAAAUABAAAAABAAAAAAAUABEAAAABAAEAAAAVAAQAAAABAAMAAAAVAAoAAAABAAMAAAAVAA8AAAAEAAMAAAAVABAAAAABAAAAAAAVABEAAAABAAEAAAAWAAQAAAABAAMAAAAWAAoAAAABAAMAAAAWABAAAAABAAAAAAAWABEAAAABAAEAAAAXAAQAAAABAAMAAAAXAAoAAAABAAMAAAAXABAAAAABAAAAAAAXABEAAAABAAEAAAAYAAMAAAAEAAMAAAAYAAQAAAABAAMAAAAYAAoAAAABAAMAAAAYABAAAAABAAAAAAAYABEAAAABAAEAAAAZAAMAAAAEAAMAAAAZAAQAAAABAAMAAAAZAAoAAAACAAMAAAAZABAAAAABAAAAAAAZABEAAAABAAEAAAAaAAQAAAABAAMAAAAaAAwAAQAAAAAAAAAaABAAAAABAAAAAAAaABEAAAABAAEAAAAbAAQAAAABAAMAAAAbAAwAAQABAAAAAAAbABAAAAABAAAAAAAbABEAAAABAAEAAAAcAAQAAAABAAMAAAAcAAwAAQACAAAAAAAcAA4AAQAAAAAAAAAcABAAAAABAAAAAAAcABEAAAABAAEAAAAdAAQAAAABAAMAAAAdAA4AAQABAAAAAAAdABAAAAABAAAAAAAdABEAAAABAAEAAAAeAAQAAAABAAMAAAAeAA4AAQACAAAAAAAeABAAAAABAAAAAAAeABEAAAABAAEAAAAfAAAAAAAAAAEAAAAfAAEAAAAAAAEAAAAfAAIAAAAAAAEAAAAfAAMAAAAAAAEAAAAfAAQAAAAAAAEAAAAfAAUAAAAAAAEAAAAfAAYAAAAAAAEAAAAfAAcAAAAAAAEAAAAfAAgAAAAAAAEAAAAfAAkAAAAAAAEAAAAfAAoAAAAAAAEAAAAfAAsAAAAAAAEAAAAfAAwAAAAAAAEAAAAfAA0AAAAAAAEAAAAfAA4AAAAAAAEAAAAfAA8AAAAAAAEAAAAfABAAAAAAAAEAAAAfABEAAAAAAAEAAAA=")
+tile_set = ExtResource("3_terrain")
+
+[node name="Vegetation" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAEAA8AAAAEAAQAABAGAAUAAAAGAAYAAAAJAAsAAAADAAcAAAAMAAMAAAADAAQAAAAPAAsAAAADAAYAAAASAAMAAAAGAAQAAAATAAsAAAAAAAYAABAXAAUAAAACAAYAAAAXAAkAAAACAAQAABAbAAUAAAAFAAcAABAaAA8AAAABAAQAABAKAA8AAAAGAAcAABA=")
+tile_set = ExtResource("3_terrain")
+
+[node name="Crumbles" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAOABAAAgAAAAAAAQAPABAAAgAAAAAAAQAQAAQAAgAAAAAAAQARAAQAAgAAAAAAAQA=")
+tile_set = ExtResource("3_terrain")
+
+[node name="Barrels" type="Node2D" parent="."]
+
+[node name="Barrel1" parent="Barrels" instance=ExtResource("6_barrel")]
+position = Vector2(56, 124)
+
+[node name="Barrel2" parent="Barrels" instance=ExtResource("6_barrel")]
+position = Vector2(180, 76)
+
+[node name="Barrel3" parent="Barrels" instance=ExtResource("6_barrel")]
+position = Vector2(84, 28)
+
+[node name="Goal" parent="." instance=ExtResource("4_goal")]
+position = Vector2(240, 28)
+
+[node name="Sun" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(128, 14)
+texture = ExtResource("5_sun")
+hframes = 2
+frame = 1
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+unique_name_in_owner = true
+position = Vector2(16, 124)
+
+[node name="Camera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+anchor_mode = 0
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Help" type="Label" parent="HUD"]
+offset_left = 4.0
+offset_top = 1.0
+offset_right = 4.0
+offset_bottom = 1.0
+theme_override_colors/font_color = Color(0.290196, 0.145098, 0.564706, 1)
+text = "esc menu"
+
+[node name="Countdown" type="Label" parent="HUD"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 54.0
+offset_bottom = 66.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.984314, 0.94902, 0.211765, 1)
+theme_override_font_sizes/font_size = 12
+text = "3"
+horizontal_alignment = 1
+
+[node name="Banner" type="ColorRect" parent="HUD"]
+visible = false
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -14.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0588235, 0.0431373, 0.14902, 1)
+
+[node name="Bravo" type="Label" parent="HUD/Banner"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 6.0
+offset_bottom = 12.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.984314, 0.94902, 0.211765, 1)
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="HUD/Banner"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 16.0
+offset_bottom = 22.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.721569, 0.956863, 1, 1)
+horizontal_alignment = 1
+
+[connection signal="reached" from="Goal" to="." method="_on_goal_reached"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

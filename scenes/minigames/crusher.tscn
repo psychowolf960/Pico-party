@@ -1,0 +1,136 @@
+[gd_scene format=4]
+
+[ext_resource type="Script" path="res://scripts/minigames/crusher.gd" id="1_crusher"]
+[ext_resource type="PackedScene" uid="uid://dc1jcn465sc0t" path="res://scenes/player.tscn" id="2_player"]
+[ext_resource type="TileSet" uid="uid://b4dcqa33st4he" path="res://art/tilesets/terrain_office.tres" id="3_terrain"]
+[ext_resource type="PackedScene" path="res://scenes/objects/hole.tscn" id="4_hole"]
+[ext_resource type="Texture2D" uid="uid://cpr1b365jx0lp" path="res://art/objects/ceiling.png" id="5_ceiling"]
+
+[node name="Crusher" type="Node2D"]
+script = ExtResource("1_crusher")
+
+[node name="Level" type="TileMapLayer" parent="."]
+unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAAAAAAAAAACAAEAAAAfAAAAAAAAAAEAAAAAAAEAAAACAAEAAAAfAAEAAAAAAAEAAAAAAAIAAAACAAEAAAAfAAIAAAAAAAEAAAAAAAMAAAACAAEAAAAKAAMAAAAAAAMAAAALAAMAAAABAAMAAAAMAAMAAAABAAMAAAANAAMAAAACAAMAAAASAAMAAAAAAAMAAAATAAMAAAABAAMAAAAUAAMAAAABAAMAAAAVAAMAAAACAAMAAAAfAAMAAAAAAAEAAAAAAAQAAAACAAEAAAAfAAQAAAAAAAEAAAAAAAUAAAACAAEAAAAfAAUAAAAAAAEAAAAAAAYAAAACAAEAAAAfAAYAAAAAAAEAAAAAAAcAAAACAAEAAAAfAAcAAAAAAAEAAAAAAAgAAAACAAEAAAAfAAgAAAAAAAEAAAAAAAkAAAACAAEAAAADAAkAAAAAAAMAAAAEAAkAAAABAAMAAAAFAAkAAAABAAMAAAAGAAkAAAABAAMAAAAHAAkAAAABAAMAAAAIAAkAAAABAAMAAAAJAAkAAAABAAMAAAAKAAkAAAABAAMAAAALAAkAAAACAAMAAAAUAAkAAAAAAAMAAAAVAAkAAAABAAMAAAAWAAkAAAABAAMAAAAXAAkAAAABAAMAAAAYAAkAAAABAAMAAAAZAAkAAAABAAMAAAAaAAkAAAABAAMAAAAbAAkAAAABAAMAAAAcAAkAAAACAAMAAAAfAAkAAAAAAAEAAAAAAAoAAAACAAEAAAAfAAoAAAAAAAEAAAAAAAsAAAACAAEAAAAfAAsAAAAAAAEAAAAAAAwAAAACAAEAAAAfAAwAAAAAAAEAAAAAAA0AAAACAAEAAAAfAA0AAAAAAAEAAAAAAA4AAAACAAEAAAAfAA4AAAAAAAEAAAAAAA8AAAABAAEAAAABAA8AAAABAAAAAAACAA8AAAACAAAAAAAEAA8AAAAAAAAAAAAFAA8AAAABAAAAAAAGAA8AAAABAAAAAAAHAA8AAAACAAAAAAAJAA8AAAAAAAAAAAAKAA8AAAABAAAAAAALAA8AAAABAAAAAAAMAA8AAAACAAAAAAAOAA8AAAAAAAAAAAAPAA8AAAABAAAAAAAQAA8AAAABAAAAAAARAA8AAAACAAAAAAATAA8AAAAAAAAAAAAUAA8AAAABAAAAAAAVAA8AAAABAAAAAAAWAA8AAAACAAAAAAAYAA8AAAAAAAAAAAAZAA8AAAABAAAAAAAaAA8AAAABAAAAAAAbAA8AAAACAAAAAAAdAA8AAAAAAAAAAAAeAA8AAAABAAAAAAAfAA8AAAABAAEAAAAAABAAAAABAAEAAAABABAAAAABAAEAAAACABAAAAACAAEAAAAEABAAAAAAAAEAAAAFABAAAAABAAEAAAAGABAAAAABAAEAAAAHABAAAAACAAEAAAAJABAAAAAAAAEAAAAKABAAAAABAAEAAAALABAAAAABAAEAAAAMABAAAAACAAEAAAAOABAAAAAAAAEAAAAPABAAAAABAAEAAAAQABAAAAABAAEAAAARABAAAAACAAEAAAATABAAAAAAAAEAAAAUABAAAAABAAEAAAAVABAAAAABAAEAAAAWABAAAAACAAEAAAAYABAAAAAAAAEAAAAZABAAAAABAAEAAAAaABAAAAABAAEAAAAbABAAAAACAAEAAAAdABAAAAAAAAEAAAAeABAAAAABAAEAAAAfABAAAAABAAEAAAAAABEAAAABAAEAAAABABEAAAABAAEAAAACABEAAAABAAEAAAADABEAAAABAAAAAAAEABEAAAABAAEAAAAFABEAAAABAAEAAAAGABEAAAABAAEAAAAHABEAAAABAAEAAAAIABEAAAABAAAAAAAJABEAAAABAAEAAAAKABEAAAABAAEAAAALABEAAAABAAEAAAAMABEAAAABAAEAAAANABEAAAABAAAAAAAOABEAAAABAAEAAAAPABEAAAABAAEAAAAQABEAAAABAAEAAAARABEAAAABAAEAAAASABEAAAABAAAAAAATABEAAAABAAEAAAAUABEAAAABAAEAAAAVABEAAAABAAEAAAAWABEAAAABAAEAAAAXABEAAAABAAAAAAAYABEAAAABAAEAAAAZABEAAAABAAEAAAAaABEAAAABAAEAAAAbABEAAAABAAEAAAAcABEAAAABAAAAAAAdABEAAAABAAEAAAAeABEAAAABAAEAAAAfABEAAAABAAEAAAAOAAMAAQAAAAAAAAAPAAMAAQABAAAAAAAQAAMAAQABAAAAAAARAAMAAQACAAAAAAADAAgAAAAEAAMAAAAcAAgAAAAEAAMAAAA=")
+tile_set = ExtResource("3_terrain")
+
+[node name="Vegetation" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAALAAgAAAAEAAQAABATAAIAAAAEAAAAAAAWAAoAAAAGAAYAAAAZAA4AAAAGAAAAAAAMAAIAAAAGAAcAAAAGAAoAAAAFAAcAABAKAA4AAAABAAQAAAA=")
+tile_set = ExtResource("3_terrain")
+
+[node name="Crumbles" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAANAAkAAgAAAAAAAQAOAAkAAgAAAAAAAQAPAAkAAgAAAAAAAQAQAAkAAgAAAAAAAQARAAkAAgAAAAAAAQASAAkAAgAAAAAAAQA=")
+tile_set = ExtResource("3_terrain")
+
+[node name="Holes" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Hole1" parent="Holes" instance=ExtResource("4_hole")]
+position = Vector2(28, 120)
+
+[node name="Hole2" parent="Holes" instance=ExtResource("4_hole")]
+position = Vector2(68, 120)
+
+[node name="Hole3" parent="Holes" instance=ExtResource("4_hole")]
+position = Vector2(108, 120)
+
+[node name="Hole4" parent="Holes" instance=ExtResource("4_hole")]
+position = Vector2(148, 120)
+
+[node name="Hole5" parent="Holes" instance=ExtResource("4_hole")]
+position = Vector2(188, 120)
+
+[node name="Hole6" parent="Holes" instance=ExtResource("4_hole")]
+position = Vector2(228, 120)
+
+[node name="Ceiling" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 4)
+
+[node name="Body" type="ColorRect" parent="Ceiling"]
+offset_left = 8.0
+offset_top = -160.0
+offset_right = 248.0
+offset_bottom = -12.0
+mouse_filter = 2
+color = Color(0.231373, 0.227451, 0.270588, 1)
+
+[node name="Spikes" type="Sprite2D" parent="Ceiling"]
+texture_repeat = 2
+position = Vector2(8, -12)
+texture = ExtResource("5_ceiling")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 240, 12)
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+unique_name_in_owner = true
+position = Vector2(104, 20)
+
+[node name="Camera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+anchor_mode = 0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Help" type="Label" parent="HUD"]
+offset_left = 4.0
+offset_top = 1.0
+offset_right = 4.0
+offset_bottom = 1.0
+theme_override_colors/font_color = Color(0.290196, 0.145098, 0.564706, 1)
+text = "esc menu"
+
+[node name="Countdown" type="Label" parent="HUD"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 54.0
+offset_bottom = 66.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.984314, 0.94902, 0.211765, 1)
+theme_override_font_sizes/font_size = 12
+text = "3"
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="HUD"]
+unique_name_in_owner = true
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 94.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.721569, 0.956863, 1, 1)
+text = "cache-toi dans un trou !"
+horizontal_alignment = 1
+
+[node name="Banner" type="ColorRect" parent="HUD"]
+visible = false
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -14.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0588235, 0.0431373, 0.14902, 1)
+
+[node name="Bravo" type="Label" parent="HUD/Banner"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 6.0
+offset_bottom = 12.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.984314, 0.94902, 0.211765, 1)
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="HUD/Banner"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 16.0
+offset_bottom = 22.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.721569, 0.956863, 1, 1)
+horizontal_alignment = 1
