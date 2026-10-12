@@ -2,7 +2,7 @@ extends Node2D
 
 const STARTS = [Vector2(0, 0), Vector2(10, 0), Vector2(20, 0), Vector2(30, 0)]
 const SCREEN = Vector2i(256, 144)
-const GRACE = 0.4
+const GRACE = 0.8
 
 var views = []
 var players = []

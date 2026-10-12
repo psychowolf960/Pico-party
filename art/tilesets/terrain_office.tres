@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" format=3 uid="uid://b4dcqa33st4he"]
 
-[ext_resource type="Texture2D" path="res://art/tilesets/terrain_office.png" id="1"]
-[ext_resource type="Texture2D" path="res://art/tilesets/wood_office.png" id="2_wood"]
+[ext_resource type="Texture2D" uid="uid://dwm2h3vpkgvu" path="res://art/tilesets/terrain_office.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://btm5rkoqtaqbv" path="res://art/tilesets/wood_office.png" id="2_wood"]
 [ext_resource type="PackedScene" path="res://scenes/objects/crumble_office.tscn" id="3_crumble"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_terrain"]
