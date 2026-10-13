@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://dc1jcn465sc0t" path="res://scenes/player.tscn" id="2_player"]
 [ext_resource type="TileSet" uid="uid://dyxe78ivp2i6y" path="res://art/tilesets/terrain.tres" id="4_iywne"]
 [ext_resource type="PackedScene" path="res://scenes/objects/checkpoint.tscn" id="8_cp"]
-[ext_resource type="Script" uid="uid://bv5n1drs1314t" path="res://scripts/cameras/camera.gd" id="9_cam"]
 [ext_resource type="PackedScene" path="res://scenes/objects/love.tscn" id="10_love"]
 [ext_resource type="PackedScene" path="res://scenes/objects/goal.tscn" id="11_goal"]
 [ext_resource type="Texture2D" uid="uid://coj0tf3sepi0k" path="res://art/objects/love.png" id="12_love_png"]
@@ -12,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cwa8csl4m0wfw" path="res://scenes/objects/spring.tscn" id="14_spring"]
 [ext_resource type="Texture2D" path="res://art/objects/kiosk.png" id="15_kiosk"]
 [ext_resource type="SpriteFrames" path="res://art/characters/recruiter_frames.tres" id="16_recruiter"]
+[ext_resource type="PackedScene" path="res://scenes/camera.tscn" id="camera_scene"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_icon"]
 atlas = ExtResource("12_love_png")
@@ -122,9 +122,9 @@ position = Vector2(844, 44)
 unique_name_in_owner = true
 position = Vector2(20, 100)
 
-[node name="Camera" type="Camera2D" parent="." unique_id=398468598 node_paths=PackedStringArray("target", "level")]
+[node name="Camera" parent="." unique_id=398468598 node_paths=PackedStringArray("target", "level") instance=ExtResource("camera_scene")]
 unique_name_in_owner = true
-script = ExtResource("9_cam")
+mode = 2
 target = NodePath("../Player")
 level = NodePath("../Level")
 

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dc1jcn465sc0t" path="res://scenes/player.tscn" id="2_player"]
 [ext_resource type="Texture2D" uid="uid://bg70gxqsdnrr4" path="res://art/characters/boss.png" id="3_boss"]
 [ext_resource type="PackedScene" path="res://scenes/objects/heart.tscn" id="4_heart"]
+[ext_resource type="PackedScene" path="res://scenes/camera.tscn" id="camera_scene"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_open"]
 atlas = ExtResource("3_boss")
@@ -110,9 +111,8 @@ life = NodePath("../../HUD/Lives/Life4")
 unique_name_in_owner = true
 position = Vector2(56, 100)
 
-[node name="Camera" type="Camera2D" parent="." unique_id=911674244]
+[node name="Camera" parent="." unique_id=911674244 instance=ExtResource("camera_scene")]
 unique_name_in_owner = true
-anchor_mode = 0
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1083148682]
 

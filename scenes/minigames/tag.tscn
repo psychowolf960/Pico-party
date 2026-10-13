@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://b4dcqa33st4he" path="res://art/tilesets/terrain_office.tres" id="2_kvos3"]
 [ext_resource type="PackedScene" uid="uid://dc1jcn465sc0t" path="res://scenes/player.tscn" id="3_k8qvj"]
 [ext_resource type="PackedScene" uid="uid://bdeqog7bk423d" path="res://scenes/objects/barrel.tscn" id="5_t33fi"]
-[ext_resource type="Script" uid="uid://d2cw3agtbwnbu" path="res://scripts/cameras/screen_camera.gd" id="9_screen"]
+[ext_resource type="PackedScene" path="res://scenes/camera.tscn" id="camera_scene"]
 
 [node name="tag" type="Node2D" unique_id=962611973]
 script = ExtResource("1_0l3ha")
@@ -23,10 +23,9 @@ tile_set = ExtResource("2_kvos3")
 unique_name_in_owner = true
 respawns = false
 
-[node name="Camera" type="Camera2D" parent="." unique_id=527010038 node_paths=PackedStringArray("level")]
+[node name="Camera" parent="." unique_id=527010038 node_paths=PackedStringArray("level") instance=ExtResource("camera_scene")]
 unique_name_in_owner = true
-anchor_mode = 0
-script = ExtResource("9_screen")
+screen = 1
 level = NodePath("../Level")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1103645897]

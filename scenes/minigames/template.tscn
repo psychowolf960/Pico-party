@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/minigames/template.gd" id="1_template"]
 [ext_resource type="PackedScene" uid="uid://dc1jcn465sc0t" path="res://scenes/player.tscn" id="2_player"]
 [ext_resource type="TileSet" uid="uid://dyxe78ivp2i6y" path="res://art/tilesets/terrain.tres" id="3_terrain"]
+[ext_resource type="PackedScene" path="res://scenes/camera.tscn" id="camera_scene"]
 
 [node name="Template" type="Node2D"]
 script = ExtResource("1_template")
@@ -16,9 +17,8 @@ tile_set = ExtResource("3_terrain")
 unique_name_in_owner = true
 position = Vector2(40, 100)
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera" parent="." instance=ExtResource("camera_scene")]
 unique_name_in_owner = true
-anchor_mode = 0
 
 [node name="HUD" type="CanvasLayer" parent="."]
 

@@ -65,7 +65,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "jouer"
 
-[node name="Test" type="Button" parent="Items"]
+[node name="Test" type="Button" parent="Items" unique_id=2144691690]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4

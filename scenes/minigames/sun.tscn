@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" path="res://scenes/objects/goal.tscn" id="4_goal"]
 [ext_resource type="Texture2D" uid="uid://idecdb4it3kw" path="res://art/objects/sun.png" id="5_sun"]
 [ext_resource type="PackedScene" uid="uid://bdeqog7bk423d" path="res://scenes/objects/barrel.tscn" id="6_barrel"]
+[ext_resource type="PackedScene" path="res://scenes/camera.tscn" id="camera_scene"]
 
 [node name="SunGame" type="Node2D" unique_id=343691211]
 script = ExtResource("1_sun")
@@ -56,9 +57,8 @@ frame = 1
 unique_name_in_owner = true
 position = Vector2(16, 124)
 
-[node name="Camera" type="Camera2D" parent="." unique_id=1388113321]
+[node name="Camera" parent="." unique_id=1388113321 instance=ExtResource("camera_scene")]
 unique_name_in_owner = true
-anchor_mode = 0
 
 [node name="Timer" type="Timer" parent="." unique_id=138682648]
 unique_name_in_owner = true

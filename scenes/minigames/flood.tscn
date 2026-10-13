@@ -5,9 +5,9 @@
 [ext_resource type="TileSet" uid="uid://be5an6thbgwj3" path="res://art/tilesets/terrain_bath.tres" id="3_terrain"]
 [ext_resource type="Shader" uid="uid://01hv0lnk2a6f" path="res://shaders/water.gdshader" id="4_water"]
 [ext_resource type="Texture2D" uid="uid://b6qxd5jhodhlg" path="res://art/objects/water.png" id="5_water_png"]
-[ext_resource type="Script" uid="uid://c0v5hul8xk5kv" path="res://scripts/cameras/flood_camera.gd" id="6_cam"]
 [ext_resource type="PackedScene" uid="uid://bdeqog7bk423d" path="res://scenes/objects/barrel.tscn" id="7_barrel"]
 [ext_resource type="PackedScene" uid="uid://cwa8csl4m0wfw" path="res://scenes/objects/spring.tscn" id="8_spring"]
+[ext_resource type="PackedScene" path="res://scenes/camera.tscn" id="camera_scene"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_water"]
 shader = ExtResource("4_water")
@@ -86,9 +86,9 @@ offset_bottom = 294.0
 [node name="Focus" type="Marker2D" parent="." unique_id=465161218]
 unique_name_in_owner = true
 
-[node name="Camera" type="Camera2D" parent="." unique_id=527010038]
+[node name="Camera" parent="." unique_id=527010038 instance=ExtResource("camera_scene")]
 unique_name_in_owner = true
-script = ExtResource("6_cam")
+mode = 1
 lead = 0.75
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1103645897]

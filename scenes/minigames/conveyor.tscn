@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://scripts/minigames/conveyor.gd" id="1_conveyor"]
 [ext_resource type="TileSet" uid="uid://3bhkpssciy6h" path="res://art/tilesets/terrain_industry.tres" id="2_terrain"]
 [ext_resource type="PackedScene" uid="uid://dc1jcn465sc0t" path="res://scenes/player.tscn" id="3_player"]
-[ext_resource type="Script" uid="uid://d2cw3agtbwnbu" path="res://scripts/cameras/screen_camera.gd" id="4_screen"]
 [ext_resource type="Texture2D" path="res://art/objects/belt.png" id="5_belt"]
 [ext_resource type="Texture2D" path="res://art/objects/roller.png" id="6_roller"]
 [ext_resource type="Texture2D" path="res://art/objects/belt_arrow.png" id="7_arrow"]
 [ext_resource type="Texture2D" path="res://art/objects/pipe.png" id="8_pipe"]
+[ext_resource type="PackedScene" path="res://scenes/camera.tscn" id="camera_scene"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_belt"]
 size = Vector2(192, 8)
@@ -130,11 +130,9 @@ shape = SubResource("RectangleShape2D_bin")
 unique_name_in_owner = true
 position = Vector2(80, 99)
 
-[node name="Camera" type="Camera2D" parent="." node_paths=PackedStringArray("level")]
+[node name="Camera" parent="." node_paths=PackedStringArray("level") instance=ExtResource("camera_scene")]
 unique_name_in_owner = true
-anchor_mode = 0
-script = ExtResource("4_screen")
-screen = 2
+screen = 3
 level = NodePath("../Level")
 
 [node name="Flip" type="Timer" parent="."]

@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" path="res://scenes/objects/moving_platform.tscn" id="6_platform"]
 [ext_resource type="PackedScene" uid="uid://cwa8csl4m0wfw" path="res://scenes/objects/spring.tscn" id="7_spring"]
 [ext_resource type="PackedScene" uid="uid://bdeqog7bk423d" path="res://scenes/objects/barrel.tscn" id="8_barrel"]
+[ext_resource type="PackedScene" path="res://scenes/camera.tscn" id="camera_scene"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_zone"]
 size = Vector2(24, 16)
@@ -130,9 +131,8 @@ texture = ExtResource("4_crown")
 unique_name_in_owner = true
 position = Vector2(16, 108)
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera" parent="." instance=ExtResource("camera_scene")]
 unique_name_in_owner = true
-anchor_mode = 0
 
 [node name="Clock" type="Timer" parent="."]
 unique_name_in_owner = true

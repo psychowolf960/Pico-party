@@ -1,12 +1,12 @@
 [gd_scene format=4]
 
 [ext_resource type="Script" path="res://scripts/minigames/paint.gd" id="1_paint"]
-[ext_resource type="Script" uid="uid://c0v5hul8xk5kv" path="res://scripts/cameras/flood_camera.gd" id="2_cam"]
 [ext_resource type="TileSet" uid="uid://b4dcqa33st4he" path="res://art/tilesets/terrain_office.tres" id="3_terrain"]
 [ext_resource type="TileSet" path="res://art/tilesets/paint.tres" id="4_ink"]
 [ext_resource type="PackedScene" uid="uid://dc1jcn465sc0t" path="res://scenes/player.tscn" id="5_player"]
 [ext_resource type="PackedScene" uid="uid://cwa8csl4m0wfw" path="res://scenes/objects/spring.tscn" id="6_spring"]
 [ext_resource type="Shader" path="res://shaders/gray.gdshader" id="7_gray"]
+[ext_resource type="PackedScene" path="res://scenes/camera.tscn" id="camera_scene"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gray"]
 shader = ExtResource("7_gray")
@@ -60,11 +60,9 @@ position = Vector2(524, 124)
 unique_name_in_owner = true
 position = Vector2(28, 220)
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera" parent="." instance=ExtResource("camera_scene")]
 unique_name_in_owner = true
-anchor_mode = 0
-script = ExtResource("2_cam")
-lead = 0.5
+mode = 1
 
 [node name="Clock" type="Timer" parent="."]
 unique_name_in_owner = true

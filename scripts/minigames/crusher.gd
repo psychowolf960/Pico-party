@@ -4,7 +4,7 @@ const STARTS = [Vector2(0, 0), Vector2(16, 0), Vector2(32, 0), Vector2(48, 0)]
 const SCREEN = Vector2i(256, 144)
 const BOTTOM = 120.0
 const HEAD = 9.0
-const WARN = 1.0
+const WARN = 2.0
 const START_SPEED = 20.0
 const SPEED_STEP = 4.0
 const RUSH_SPEED = 90.0
@@ -145,10 +145,7 @@ func open_holes():
 
 
 func shake_screen():
-	var tween = create_tween()
-	tween.tween_property(%Camera, "offset", Vector2(0, 2), 0.05)
-	tween.tween_property(%Camera, "offset", Vector2(0, -1), 0.05)
-	tween.tween_property(%Camera, "offset", Vector2.ZERO, 0.05)
+	%Camera.shake()
 
 
 func _on_player_died(player):

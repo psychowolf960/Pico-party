@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://pgkikkgy6u0x" path="res://scripts/minigames/tug.gd" id="1_tug"]
 [ext_resource type="PackedScene" uid="uid://dc1jcn465sc0t" path="res://scenes/player.tscn" id="2_player"]
 [ext_resource type="TileSet" uid="uid://dyxe78ivp2i6y" path="res://art/tilesets/terrain.tres" id="3_o7iot"]
+[ext_resource type="PackedScene" path="res://scenes/camera.tscn" id="camera_scene"]
 
 [node name="Tug" type="Node2D" unique_id=1438446573]
 script = ExtResource("1_tug")
@@ -45,9 +46,8 @@ color = Color(0.984314, 0.94902, 0.211765, 1)
 unique_name_in_owner = true
 position = Vector2(40, 100)
 
-[node name="Camera" type="Camera2D" parent="." unique_id=1863351721]
+[node name="Camera" parent="." unique_id=1863351721 instance=ExtResource("camera_scene")]
 unique_name_in_owner = true
-anchor_mode = 0
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=786746991]
 

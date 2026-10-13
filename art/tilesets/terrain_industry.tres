@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" format=3 uid="uid://3bhkpssciy6h"]
 
-[ext_resource type="Texture2D" path="res://art/tilesets/terrain_industry.png" id="1"]
-[ext_resource type="Texture2D" path="res://art/tilesets/wood_industry.png" id="2_wood"]
+[ext_resource type="Texture2D" uid="uid://5fjc5rbytqiv" path="res://art/tilesets/terrain_industry.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://blx0jlmdxoav2" path="res://art/tilesets/wood_industry.png" id="2_wood"]
 [ext_resource type="PackedScene" path="res://scenes/objects/crumble_industry.tscn" id="3_crumble"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_terrain"]

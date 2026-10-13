@@ -109,12 +109,16 @@ func pace():
 
 
 func attacks():
+	var order = [rain, walls, lasers, circles, bones, spiral, aimed, sweep]
 	while running:
-		await rain()
-		await walls()
-		await lasers()
-		await circles()
-		await bones()
+		order.shuffle()
+		if level == 0:
+			order.erase(rain)
+			order.push_front(rain)
+		for attack in order:
+			if not running:
+				return
+			await attack.call()
 		level += 1
 
 
@@ -203,6 +207,54 @@ func bones():
 	await wait(1.0)
 
 
+
+func spiral():
+	var origin = Vector2(%Box.size.x / 2, -3)
+	var count = 40
+	for i in count:
+		if not running:
+			return
+		var swing = sin(i * TAU / count * 1.5) * 1.1
+		for arm in [-0.35, 0.35]:
+			var dir = Vector2.DOWN.rotated(swing + arm)
+			pellet(origin, dir * 36.0 * pace())
+		await wait(0.16 / pace())
+	await wait(2.5)
+
+
+func aimed():
+	for i in 6:
+		if not running:
+			return
+		var target = alive.pick_random().position
+		var origin = Vector2(randf_range(2, %Box.size.x - 2), -3)
+		if i % 2 == 1:
+			var side = -3.0 if randf() < 0.5 else %Box.size.x + 3
+			origin = Vector2(side, randf_range(4, %Box.size.y / 2))
+		var dir = origin.direction_to(target)
+		for spread in [-0.25, 0.0, 0.25]:
+			pellet(origin, dir.rotated(spread) * 48.0 * pace())
+		Sfx.play("tick", 1.2)
+		await wait(0.8 / pace())
+	await wait(2.5)
+
+
+func sweep():
+	var start = -3.0
+	var speed = 30.0 * pace()
+	if randf() < 0.5:
+		start = %Box.size.y
+		speed = -speed
+	for i in 4:
+		if not running:
+			return
+		var middle = randf_range(gap / 2 + 4, %Box.size.x - gap / 2 - 4)
+		bone(Rect2(0, start, middle - gap / 2, 3), Vector2(0, speed))
+		bone(Rect2(middle + gap / 2, start, %Box.size.x - middle - gap / 2, 3), Vector2(0, speed))
+		await wait(1.6)
+	await wait(3.0)
+
+
 func set_blue(on):
 	blue = on
 	%BlueBorder.visible = on
@@ -226,6 +278,9 @@ func bone(rect, velocity):
 	piece.position = rect.position
 	piece.size = rect.size
 	piece.velocity = velocity
+	if rect.size.x > rect.size.y:
+		piece.patch_margin_top = 1
+		piece.patch_margin_bottom = 1
 	%Box.add_child(piece)
 
 

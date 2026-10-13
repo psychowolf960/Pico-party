@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://scripts/minigames/dropper.gd" id="1_drop"]
 [ext_resource type="PackedScene" uid="uid://dc1jcn465sc0t" path="res://scenes/player.tscn" id="2_player"]
 [ext_resource type="TileSet" uid="uid://3bhkpssciy6h" path="res://art/tilesets/terrain_industry.tres" id="3_terrain"]
-[ext_resource type="Script" uid="uid://c0v5hul8xk5kv" path="res://scripts/cameras/flood_camera.gd" id="4_cam"]
 [ext_resource type="PackedScene" path="res://scenes/objects/love.tscn" id="5_love"]
 [ext_resource type="PackedScene" path="res://scenes/objects/goal.tscn" id="6_goal"]
 [ext_resource type="Texture2D" uid="uid://coj0tf3sepi0k" path="res://art/objects/love.png" id="7_love_png"]
+[ext_resource type="PackedScene" path="res://scenes/camera.tscn" id="camera_scene"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_icon"]
 atlas = ExtResource("7_love_png")
@@ -99,9 +99,9 @@ position = Vector2(60, 876)
 unique_name_in_owner = true
 position = Vector2(60, 76)
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera" parent="." instance=ExtResource("camera_scene")]
 unique_name_in_owner = true
-script = ExtResource("4_cam")
+mode = 1
 lead = 0.3
 
 [node name="HUD" type="CanvasLayer" parent="."]

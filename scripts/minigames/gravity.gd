@@ -71,7 +71,10 @@ func _physics_process(delta):
 
 
 func move(player, delta):
-	var dir = signf(Input.get_axis(player.act("left"), player.act("right")))
+	player.stunned = maxf(player.stunned - delta, 0)
+	player.punching = maxf(player.punching - delta, 0)
+	var dazed = player.is_dazed()
+	var dir = 0.0 if dazed else signf(Input.get_axis(player.act("left"), player.act("right")))
 	var was_grounded = player.is_on_floor()
 	if was_grounded:
 		player.coyote = COYOTE
@@ -82,14 +85,28 @@ func move(player, delta):
 		player.velocity.y = maxf(player.velocity.y - GRAVITY * delta, -FALL)
 	else:
 		player.velocity.y = minf(player.velocity.y + GRAVITY * delta, FALL)
-	if player.coyote > 0 and Input.is_action_just_pressed(player.act("o")):
+	if not dazed and player.coyote > 0 and Input.is_action_just_pressed(player.act("o")):
 		flip(player)
+	if not dazed and Input.is_action_just_pressed(player.act("x")):
+		push(player)
 	var fall_speed = absf(player.velocity.y)
 	player.move_and_slide()
 	var grounded = player.is_on_floor()
 	if grounded and not was_grounded and fall_speed > 60:
 		Sfx.play("land", 1.0, -4.0)
-	player.animate(false, dir, 0.0, grounded)
+	player.animate(dazed, dir, 0.0, grounded)
+
+
+# Le coup de poing projette vers le haut : on l'inverse pour les joueurs retournés.
+func push(player):
+	var calm = []
+	for other in alive:
+		if not other.is_dazed():
+			calm.append(other)
+	player.punch()
+	for other in calm:
+		if other.is_dazed() and flipped[other.index]:
+			other.velocity.y = -other.velocity.y
 
 
 func flip(player):
