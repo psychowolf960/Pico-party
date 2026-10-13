@@ -95,4 +95,5 @@ Dans `scripts/ui/menu.gd`,
 
 ## Licence
 
-Le code du jeu et le plugin Couch Party sont dans le domaine public (The Unlicense), voir [LICENSE](LICENSE). Auteur : Gus Roquefort.
+Le code du jeu et le plugin Couch Party sont dans le domaine public (The Unlicense), voir [LICENSE](LICENSE). Auteur : Gus Roquefort (AKA Alexis pour les intimes)
+[etherealxx/undotale-godot4: An UNDERTALE Battle Engine made with Godot 4](https://github.com/etherealxx/undotale-godot4)
