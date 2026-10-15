@@ -13,6 +13,8 @@ const SKINS = [
 	preload("res://art/characters/player2_frames.tres"),
 	preload("res://art/characters/player3_frames.tres"),
 	preload("res://art/characters/player4_frames.tres"),
+	preload("res://art/characters/player5_frames.tres"),
+	preload("res://art/characters/player6_frames.tres"),
 ]
 
 @export var index = 0

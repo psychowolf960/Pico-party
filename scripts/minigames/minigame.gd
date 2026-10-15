@@ -1,7 +1,7 @@
 class_name Minigame
 # Petits outils partagés par les mini-jeux.
 
-const COLORS = [Color("ff8a1e"), Color("4fd2ff"), Color("2ccf5a"), Color("e8475c")]
+const COLORS = [Color("ff8a1e"), Color("4fd2ff"), Color("2ccf5a"), Color("e8475c"), Color("b36bff"), Color("e8e8e8")]
 
 
 static func level_bounds(level):

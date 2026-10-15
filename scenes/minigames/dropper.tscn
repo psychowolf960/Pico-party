@@ -21,7 +21,7 @@ layer = -1
 [node name="Sky" type="ColorRect" parent="Background"]
 offset_right = 128.0
 offset_bottom = 128.0
-color = Color(0.133333, 0.12549, 0.203922, 1)
+color = Color(0.305882, 0.290196, 0.431373, 1)
 
 [node name="Level" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
